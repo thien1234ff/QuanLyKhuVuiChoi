@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using QuanLyKhuVuiChoi.Data;
 using QuanLyKhuVuiChoi.Forms.Common;
@@ -8,21 +11,23 @@ using QuanLyKhuVuiChoi.Services;
 
 namespace QuanLyKhuVuiChoi.Forms.Billing
 {
-    public class FormHoaDon : Form
+    public partial class FormHoaDon : Form
     {
+        private class ComboBoxItem
+        {
+            public string Text { get; set; } = string.Empty;
+            public string Value { get; set; } = string.Empty;
+            public override string ToString() => Text;
+        }
+
         private readonly InvoiceService _invoiceService;
         private readonly CustomerService _customerService;
         private readonly IExcelService _excelService;
         private readonly QuanLyKhuVuiChoiDbContext _context;
 
-        // UI Controls
-        private DataGridView dgvHoaDon = null!;
-        private TextBox txtSearch = null!;
-        private DateTimePicker dtpFrom = null!;
-        private DateTimePicker dtpTo = null!;
-        private ComboBox cboKhachHang = null!;
-        private Label lblTotal = null!;
-        private Label lblTotalAmount = null!;
+        public FormHoaDon() : this(new QuanLyKhuVuiChoiDbContext(), new ExcelService())
+        {
+        }
 
         public FormHoaDon(QuanLyKhuVuiChoiDbContext context, IExcelService excelService)
         {
@@ -32,143 +37,14 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             _customerService = new CustomerService(_context, _excelService);
 
             InitializeComponent();
+
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return;
+
+            dtpFrom.Value = DateTime.Today.AddMonths(-1);
+            dtpTo.Value = DateTime.Today;
+
             LoadCustomersFilter();
             LoadData();
-        }
-
-        private void InitializeComponent()
-        {
-            this.Text = "THÀNH VIÊN 4: QUẢN LÝ HÓA ĐƠN";
-            this.Size = new Size(1150, 700);
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.BackColor = UITheme.Background;
-            this.Font = UITheme.MainFont;
-
-            // Top Header Panel
-            var pnlHeader = new Panel
-            {
-                Dock = DockStyle.Top,
-                Height = 60,
-                BackColor = Color.White,
-                Padding = new Padding(20, 10, 20, 10)
-            };
-            var lblTitle = new Label
-            {
-                Text = "QUẢN LÝ DANH SÁCH HÓA ĐƠN VÀ LỊCH SỬ GIAO DỊCH",
-                Font = UITheme.HeaderFont,
-                ForeColor = Color.FromArgb(16, 185, 129),
-                AutoSize = true,
-                Location = new Point(20, 15)
-            };
-            lblTotal = new Label
-            {
-                Text = "Tổng số: 0 hóa đơn",
-                Font = UITheme.BoldFont,
-                ForeColor = UITheme.TextMuted,
-                AutoSize = true,
-                Anchor = AnchorStyles.Top | AnchorStyles.Right,
-                Location = new Point(950, 20)
-            };
-            pnlHeader.Controls.Add(lblTitle);
-            pnlHeader.Controls.Add(lblTotal);
-
-            // Filter Bar Panel
-            var pnlFilter = new Panel
-            {
-                Dock = DockStyle.Top,
-                Height = 85,
-                BackColor = Color.White,
-                Padding = new Padding(15, 10, 15, 10)
-            };
-
-            var lblFrom = new Label { Text = "Từ ngày:", Location = new Point(15, 15), AutoSize = true, Font = UITheme.BoldFont };
-            dtpFrom = new DateTimePicker { Location = new Point(80, 12), Size = new Size(120, 25), Format = DateTimePickerFormat.Short, Value = DateTime.Today.AddMonths(-1) };
-
-            var lblTo = new Label { Text = "Đến ngày:", Location = new Point(215, 15), AutoSize = true, Font = UITheme.BoldFont };
-            dtpTo = new DateTimePicker { Location = new Point(285, 12), Size = new Size(120, 25), Format = DateTimePickerFormat.Short, Value = DateTime.Today };
-
-            var lblSearch = new Label { Text = "Tìm kiếm:", Location = new Point(420, 15), AutoSize = true, Font = UITheme.BoldFont };
-            txtSearch = new TextBox { Location = new Point(490, 12), Size = new Size(180, 25) };
-
-            var lblKh = new Label { Text = "Khách hàng:", Location = new Point(685, 15), AutoSize = true, Font = UITheme.BoldFont };
-            cboKhachHang = new ComboBox { Location = new Point(770, 12), Size = new Size(180, 25), DropDownStyle = ComboBoxStyle.DropDownList };
-
-            // Buttons row 2 in filter
-            var btnLoc = new Button { Text = "🔍 Lọc", Location = new Point(80, 48), Size = new Size(80, 28) };
-            UITheme.StyleButton(btnLoc, UITheme.Primary, Color.White, 28);
-            btnLoc.Click += (s, e) => ApplyFilter();
-
-            var btnReset = new Button { Text = "Đặt lại", Location = new Point(168, 48), Size = new Size(75, 28) };
-            UITheme.StyleSecondaryButton(btnReset, 28);
-            btnReset.Click += (s, e) =>
-            {
-                txtSearch.Text = "";
-                dtpFrom.Value = DateTime.Today.AddMonths(-1);
-                dtpTo.Value = DateTime.Today;
-                cboKhachHang.SelectedIndex = 0;
-                LoadData();
-            };
-
-            var btnXemChiTiet = new Button { Text = "👁️ Xem Chi Tiết", Location = new Point(251, 48), Size = new Size(120, 28) };
-            UITheme.StyleButton(btnXemChiTiet, Color.FromArgb(2, 132, 199), Color.White, 28);
-            btnXemChiTiet.Click += BtnXemChiTiet_Click;
-
-            var btnHuy = new Button { Text = "🚫 Hủy Hóa Đơn", Location = new Point(379, 48), Size = new Size(120, 28) };
-            UITheme.StyleButton(btnHuy, Color.FromArgb(245, 158, 11), Color.White, 28);
-            btnHuy.Click += BtnHuy_Click;
-
-            var btnXoa = new Button { Text = "🗑️ Xóa HĐ", Location = new Point(507, 48), Size = new Size(100, 28) };
-            UITheme.StyleDangerButton(btnXoa, 28);
-            btnXoa.Click += BtnXoa_Click;
-
-            var btnExport = new Button { Text = "📤 Xuất Excel", Location = new Point(615, 48), Size = new Size(110, 28) };
-            UITheme.StyleButton(btnExport, Color.FromArgb(16, 185, 129), Color.White, 28);
-            btnExport.Click += BtnExport_Click;
-
-            pnlFilter.Controls.Add(lblFrom);
-            pnlFilter.Controls.Add(dtpFrom);
-            pnlFilter.Controls.Add(lblTo);
-            pnlFilter.Controls.Add(dtpTo);
-            pnlFilter.Controls.Add(lblSearch);
-            pnlFilter.Controls.Add(txtSearch);
-            pnlFilter.Controls.Add(lblKh);
-            pnlFilter.Controls.Add(cboKhachHang);
-            pnlFilter.Controls.Add(btnLoc);
-            pnlFilter.Controls.Add(btnReset);
-            pnlFilter.Controls.Add(btnXemChiTiet);
-            pnlFilter.Controls.Add(btnHuy);
-            pnlFilter.Controls.Add(btnXoa);
-            pnlFilter.Controls.Add(btnExport);
-
-            // Bottom Summary Panel
-            var pnlBottom = new Panel
-            {
-                Dock = DockStyle.Bottom,
-                Height = 50,
-                BackColor = Color.White,
-                Padding = new Padding(20, 10, 20, 10)
-            };
-            lblTotalAmount = new Label
-            {
-                Text = "Tổng doanh thu danh sách: 0 VNĐ",
-                Font = new Font("Segoe UI", 11F, FontStyle.Bold),
-                ForeColor = Color.FromArgb(220, 38, 38),
-                Location = new Point(20, 14),
-                AutoSize = true
-            };
-            pnlBottom.Controls.Add(lblTotalAmount);
-
-            // Center DataGridView
-            var pnlGrid = new Panel { Dock = DockStyle.Fill, Padding = new Padding(15) };
-            dgvHoaDon = new DataGridView { Dock = DockStyle.Fill };
-            UITheme.StyleDataGridView(dgvHoaDon);
-            dgvHoaDon.CellDoubleClick += (s, e) => OpenSelectedDetail();
-            pnlGrid.Controls.Add(dgvHoaDon);
-
-            this.Controls.Add(pnlGrid);
-            this.Controls.Add(pnlBottom);
-            this.Controls.Add(pnlFilter);
-            this.Controls.Add(pnlHeader);
         }
 
         private void LoadCustomersFilter()
@@ -189,6 +65,20 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             BindGrid(list);
         }
 
+        private void BtnLoc_Click(object? sender, EventArgs e)
+        {
+            ApplyFilter();
+        }
+
+        private void BtnReset_Click(object? sender, EventArgs e)
+        {
+            txtSearch.Text = "";
+            dtpFrom.Value = DateTime.Today.AddMonths(-1);
+            dtpTo.Value = DateTime.Today;
+            cboKhachHang.SelectedIndex = 0;
+            LoadData();
+        }
+
         private void ApplyFilter()
         {
             string? maKH = null;
@@ -201,11 +91,10 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             BindGrid(list);
         }
 
-        private void BindGrid(System.Collections.Generic.List<HoaDon> list)
+        private void BindGrid(List<HoaDon> list)
         {
             dgvHoaDon.DataSource = null;
 
-            // Chuyển sang dạng hiển thị sạch
             var displayList = list.Select(h => new
             {
                 h.MaHoaDon,
@@ -261,6 +150,14 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
         private void BtnXemChiTiet_Click(object? sender, EventArgs e)
         {
             OpenSelectedDetail();
+        }
+
+        private void DgvHoaDon_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                OpenSelectedDetail();
+            }
         }
 
         private void OpenSelectedDetail()
@@ -339,13 +236,6 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
                     MessageBox.Show($"Xuất file Excel thành công!\nĐường dẫn: {sfd.FileName}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-        }
-
-        private class ComboBoxItem
-        {
-            public string Text { get; set; } = string.Empty;
-            public string Value { get; set; } = string.Empty;
-            public override string ToString() => Text;
         }
     }
 }

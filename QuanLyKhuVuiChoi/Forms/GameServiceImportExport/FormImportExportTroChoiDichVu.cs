@@ -34,6 +34,10 @@ namespace QuanLyKhuVuiChoi.Forms.GameServiceImportExport
         private Button btnConfirmServiceImport = null!;
         private ImportResult<DichVu>? currentServiceResult;
 
+        public FormImportExportTroChoiDichVu() : this(new QuanLyKhuVuiChoiDbContext(), new ExcelService())
+        {
+        }
+
         public FormImportExportTroChoiDichVu(QuanLyKhuVuiChoiDbContext context, IExcelService excelService)
         {
             _context = context;

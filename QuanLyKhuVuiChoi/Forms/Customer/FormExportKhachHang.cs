@@ -1,5 +1,6 @@
 using System;
-using System.Drawing;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -9,153 +10,41 @@ using QuanLyKhuVuiChoi.Services;
 
 namespace QuanLyKhuVuiChoi.Forms.Customer
 {
-    public class FormExportKhachHang : Form
+    public partial class FormExportKhachHang : Form
     {
-        private readonly CustomerService _customerService;
-        private readonly IExcelService _excelService;
         private readonly QuanLyKhuVuiChoiDbContext _context;
+        private readonly IExcelService _excelService;
+        private readonly CustomerService _customerService;
 
-        private RadioButton radAll = null!;
-        private RadioButton radFilter = null!;
-        private TextBox txtKeyword = null!;
-        private ComboBox cboGioiTinh = null!;
-        private DataGridView dgvPreview = null!;
-        private Label lblCount = null!;
-        private Button btnExport = null!;
+        public FormExportKhachHang() : this(new QuanLyKhuVuiChoiDbContext(), new ExcelService())
+        {
+        }
 
         public FormExportKhachHang(QuanLyKhuVuiChoiDbContext context, IExcelService excelService)
         {
-            _context = context;
-            _excelService = excelService;
+            _context = context ?? new QuanLyKhuVuiChoiDbContext();
+            _excelService = excelService ?? new ExcelService();
             _customerService = new CustomerService(_context, _excelService);
 
             InitializeComponent();
-            RefreshPreview();
+
+            if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
+            {
+                cboGioiTinh.SelectedIndex = 0;
+                RefreshPreview();
+            }
         }
 
-        private void InitializeComponent()
-        {
-            this.Text = "FORM 3 – XUẤT DANH SÁCH KHÁCH HÀNG (ClosedXML)";
-            this.Size = new Size(950, 600);
-            this.StartPosition = FormStartPosition.CenterParent;
-            this.BackColor = UITheme.Background;
-            this.Font = UITheme.MainFont;
-
-            // Header
-            var pnlHeader = new Panel
-            {
-                Dock = DockStyle.Top,
-                Height = 60,
-                BackColor = Color.White,
-                Padding = new Padding(20, 15, 20, 10)
-            };
-            var lblTitle = new Label
-            {
-                Text = "XUẤT BÁO CÁO DANH SÁCH KHÁCH HÀNG RA EXCEL (.XLSX)",
-                Font = UITheme.HeaderFont,
-                ForeColor = UITheme.Primary,
-                AutoSize = true
-            };
-            pnlHeader.Controls.Add(lblTitle);
-
-            // Filter Options GroupBox
-            var grpOption = new GroupBox
-            {
-                Text = "Tùy Chọn Xuất Dữ Liệu",
-                Dock = DockStyle.Top,
-                Height = 110,
-                BackColor = Color.White,
-                Font = UITheme.SubHeaderFont,
-                ForeColor = UITheme.TextMain,
-                Padding = new Padding(15, 10, 15, 10)
-            };
-
-            radAll = new RadioButton
-            {
-                Text = "Xuất toàn bộ khách hàng trong hệ thống",
-                Location = new Point(20, 25),
-                AutoSize = true,
-                Font = UITheme.BoldFont,
-                Checked = true
-            };
-            radAll.CheckedChanged += (s, e) => { ToggleFilterControls(); RefreshPreview(); };
-
-            radFilter = new RadioButton
-            {
-                Text = "Xuất theo điều kiện tìm kiếm và bộ lọc:",
-                Location = new Point(20, 55),
-                AutoSize = true,
-                Font = UITheme.BoldFont
-            };
-            radFilter.CheckedChanged += (s, e) => { ToggleFilterControls(); RefreshPreview(); };
-
-            var lblKw = new Label { Text = "Từ khóa (Tên/SĐT/Email):", Location = new Point(300, 58), AutoSize = true, Font = UITheme.MainFont };
-            txtKeyword = new TextBox { Location = new Point(480, 55), Size = new Size(180, 25), Font = UITheme.MainFont, Enabled = false };
-            txtKeyword.TextChanged += (s, e) => RefreshPreview();
-
-            var lblGt = new Label { Text = "Giới tính:", Location = new Point(680, 58), AutoSize = true, Font = UITheme.MainFont };
-            cboGioiTinh = new ComboBox { Location = new Point(745, 55), Size = new Size(100, 25), Font = UITheme.MainFont, DropDownStyle = ComboBoxStyle.DropDownList, Enabled = false };
-            cboGioiTinh.Items.AddRange(new object[] { "Tất cả", "Nam", "Nữ", "Khác" });
-            cboGioiTinh.SelectedIndex = 0;
-            cboGioiTinh.SelectedIndexChanged += (s, e) => RefreshPreview();
-
-            grpOption.Controls.Add(radAll);
-            grpOption.Controls.Add(radFilter);
-            grpOption.Controls.Add(lblKw);
-            grpOption.Controls.Add(txtKeyword);
-            grpOption.Controls.Add(lblGt);
-            grpOption.Controls.Add(cboGioiTinh);
-
-            // Bottom Action Panel
-            var pnlBottom = new Panel
-            {
-                Dock = DockStyle.Bottom,
-                Height = 65,
-                BackColor = Color.White,
-                Padding = new Padding(20, 12, 20, 12)
-            };
-
-            lblCount = new Label
-            {
-                Text = "Số lượng bản ghi sẽ xuất: 0",
-                Font = UITheme.BoldFont,
-                ForeColor = UITheme.TextMuted,
-                Location = new Point(20, 22),
-                AutoSize = true
-            };
-
-            btnExport = new Button
-            {
-                Text = "📤 Xuất File Excel (.xlsx)",
-                Location = new Point(700, 12),
-                Size = new Size(210, 40)
-            };
-            UITheme.StyleButton(btnExport, UITheme.Primary, Color.White);
-            btnExport.Click += BtnExport_Click;
-
-            pnlBottom.Controls.Add(lblCount);
-            pnlBottom.Controls.Add(btnExport);
-
-            // Center Preview DataGridView
-            var pnlGrid = new Panel
-            {
-                Dock = DockStyle.Fill,
-                Padding = new Padding(15)
-            };
-            dgvPreview = new DataGridView { Dock = DockStyle.Fill };
-            UITheme.StyleDataGridView(dgvPreview);
-            pnlGrid.Controls.Add(dgvPreview);
-
-            this.Controls.Add(pnlGrid);
-            this.Controls.Add(pnlBottom);
-            this.Controls.Add(grpOption);
-            this.Controls.Add(pnlHeader);
-        }
-
-        private void ToggleFilterControls()
+        private void RadOption_CheckedChanged(object? sender, EventArgs e)
         {
             txtKeyword.Enabled = radFilter.Checked;
             cboGioiTinh.Enabled = radFilter.Checked;
+            RefreshPreview();
+        }
+
+        private void BtnApplyFilter_Click(object? sender, EventArgs e)
+        {
+            RefreshPreview();
         }
 
         private System.Collections.Generic.List<KhachHang> GetFilteredList()
@@ -165,68 +54,90 @@ namespace QuanLyKhuVuiChoi.Forms.Customer
                 return _customerService.GetAll();
             }
 
-            var query = _customerService.Search(txtKeyword.Text, "Contains");
-            string selectedGt = cboGioiTinh.SelectedItem?.ToString() ?? "Tất cả";
-            if (selectedGt != "Tất cả")
+            var query = _customerService.GetAll().AsQueryable();
+            var kw = txtKeyword.Text.Trim();
+            if (!string.IsNullOrWhiteSpace(kw))
             {
-                query = query.Where(k => k.GioiTinh == selectedGt).ToList();
+                query = query.Where(k => k.MaKH.Contains(kw, StringComparison.OrdinalIgnoreCase) ||
+                                         k.HoTen.Contains(kw, StringComparison.OrdinalIgnoreCase) ||
+                                         k.SoDienThoai.Contains(kw));
             }
 
-            return query;
+            var gt = cboGioiTinh.SelectedItem?.ToString();
+            if (!string.IsNullOrWhiteSpace(gt) && gt != "Tất cả giới tính")
+            {
+                query = query.Where(k => k.GioiTinh == gt);
+            }
+
+            return query.ToList();
         }
 
         private void RefreshPreview()
         {
-            var list = GetFilteredList();
-            dgvPreview.DataSource = null;
-            dgvPreview.DataSource = list;
+            try
+            {
+                var list = GetFilteredList();
+                dgvPreview.DataSource = list.Select(k => new
+                {
+                    k.MaKH,
+                    k.HoTen,
+                    NgaySinh = k.NgaySinh.HasValue ? k.NgaySinh.Value.ToString("dd/MM/yyyy") : "",
+                    k.GioiTinh,
+                    k.SoDienThoai,
+                    k.Email,
+                    k.DiaChi,
+                    NgayDangKy = k.NgayDangKy.ToString("dd/MM/yyyy HH:mm")
+                }).ToList();
 
-            if (dgvPreview.Columns["HoaDons"] != null) dgvPreview.Columns["HoaDons"].Visible = false;
-
-            lblCount.Text = $"Số lượng bản ghi sẽ xuất: {list.Count}";
-            btnExport.Enabled = list.Count > 0;
+                lblCount.Text = $"Số dòng chuẩn bị xuất: {list.Count:N0}";
+                btnExport.Enabled = list.Count > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi xem trước: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void BtnExport_Click(object? sender, EventArgs e)
         {
             var list = GetFilteredList();
-            if (list == null || list.Count == 0)
+            if (!list.Any())
             {
-                MessageBox.Show("Không có dữ liệu khách hàng nào để xuất.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Không có dữ liệu nào để xuất file!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            using (var sfd = new SaveFileDialog())
+            using var sfd = new SaveFileDialog
             {
-                sfd.Filter = "Excel Workbook (*.xlsx)|*.xlsx";
-                sfd.FileName = $"DanhSachKhachHang_{DateTime.Now.Year}.xlsx";
-                sfd.Title = "Chọn thư mục và tên file để lưu file Excel";
+                Filter = "Excel Workbook (*.xlsx)|*.xlsx",
+                FileName = $"DanhSach_KhachHang_{DateTime.Now:yyyyMMdd_HHmm}.xlsx",
+                Title = "Chọn nơi lưu file Excel danh sách khách hàng"
+            };
 
-                if (sfd.ShowDialog() == DialogResult.OK)
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                try
                 {
-                    try
-                    {
-                        Cursor = Cursors.WaitCursor;
-                        _customerService.ExportToExcel(list, sfd.FileName);
-                        Cursor = Cursors.Default;
+                    _customerService.ExportToExcel(list, sfd.FileName);
 
-                        var result = MessageBox.Show($"Xuất file Excel thành công!\nĐường dẫn: {sfd.FileName}\n\nBạn có muốn mở file ngay bây giờ không?", "Thành Công", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                        if (result == DialogResult.Yes)
-                        {
-                            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
-                            {
-                                FileName = sfd.FileName,
-                                UseShellExecute = true
-                            });
-                        }
-                    }
-                    catch (Exception ex)
+                    var ask = MessageBox.Show($"Xuất thành công {list.Count} dòng ra file:\n{sfd.FileName}\n\nBạn có muốn mở file ngay không?",
+                        "Xuất Excel thành công", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                    if (ask == DialogResult.Yes)
                     {
-                        Cursor = Cursors.Default;
-                        MessageBox.Show($"Lỗi xuất file Excel: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Process.Start(new ProcessStartInfo(sfd.FileName) { UseShellExecute = true });
                     }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi xuất Excel: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+        }
+
+        private void BtnClose_Click(object? sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

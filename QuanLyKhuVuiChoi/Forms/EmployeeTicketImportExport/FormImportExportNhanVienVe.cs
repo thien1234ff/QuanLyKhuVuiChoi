@@ -34,6 +34,10 @@ namespace QuanLyKhuVuiChoi.Forms.EmployeeTicketImportExport
         private Button btnConfirmTicketImport = null!;
         private ImportResult<Ve>? currentTicketResult;
 
+        public FormImportExportNhanVienVe() : this(new QuanLyKhuVuiChoiDbContext(), new ExcelService())
+        {
+        }
+
         public FormImportExportNhanVienVe(QuanLyKhuVuiChoiDbContext context, IExcelService excelService)
         {
             _context = context;
