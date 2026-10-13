@@ -43,6 +43,13 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             dtpFrom.Value = DateTime.Today.AddMonths(-1);
             dtpTo.Value = DateTime.Today;
 
+            // Phân quyền: Chỉ Admin mới có quyền xóa hoặc hủy hóa đơn
+            if (!AuthService.IsAdmin)
+            {
+                btnXoa.Enabled = false;
+                btnHuy.Enabled = false;
+            }
+
             LoadCustomersFilter();
             LoadData();
         }
@@ -179,6 +186,12 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
 
         private void BtnHuy_Click(object? sender, EventArgs e)
         {
+            if (!AuthService.IsAdmin)
+            {
+                MessageBox.Show("Quyền hạn không đủ: Chỉ Quản trị viên (Admin) mới có quyền HỦY hóa đơn!", "Yêu cầu quyền Admin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var maHD = GetSelectedInvoiceId();
             if (string.IsNullOrWhiteSpace(maHD))
             {
@@ -196,6 +209,12 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
 
         private void BtnXoa_Click(object? sender, EventArgs e)
         {
+            if (!AuthService.IsAdmin)
+            {
+                MessageBox.Show("Quyền hạn không đủ: Chỉ Quản trị viên (Admin) mới có quyền XÓA hóa đơn!", "Yêu cầu quyền Admin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var maHD = GetSelectedInvoiceId();
             if (string.IsNullOrWhiteSpace(maHD))
             {

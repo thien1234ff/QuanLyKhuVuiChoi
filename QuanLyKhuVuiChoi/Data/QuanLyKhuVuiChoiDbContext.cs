@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -22,47 +22,21 @@ namespace QuanLyKhuVuiChoi.Data
             try
             {
                 string connStr = GetConnectionString();
-                string server = "localhost";
-                var parts = connStr.Split(';');
-                foreach (var part in parts)
+                var builder = new Microsoft.Data.SqlClient.SqlConnectionStringBuilder(connStr)
                 {
-                    var trimmed = part.Trim();
-                    if (trimmed.StartsWith("Server=", StringComparison.OrdinalIgnoreCase) ||
-                        trimmed.StartsWith("Data Source=", StringComparison.OrdinalIgnoreCase))
-                    {
-                        server = trimmed.Split('=')[1].Trim();
-                        break;
-                    }
-                }
+                    ConnectTimeout = 3
+                };
 
-                if (server.Contains("(localdb)", StringComparison.OrdinalIgnoreCase))
-                {
-                    _isSqlServerAvailable = false;
-                    return false;
-                }
-
-                string host = server.Contains("\\") ? server.Split('\\')[0] : server;
-                if (host == "." || host.Equals("localhost", StringComparison.OrdinalIgnoreCase))
-                {
-                    host = "127.0.0.1";
-                }
-
-                using var client = new System.Net.Sockets.TcpClient();
-                var asyncResult = client.BeginConnect(host, 1433, null, null);
-                bool success = asyncResult.AsyncWaitHandle.WaitOne(600);
-                if (success && client.Connected)
-                {
-                    client.EndConnect(asyncResult);
-                    _isSqlServerAvailable = true;
-                    return true;
-                }
+                using var conn = new Microsoft.Data.SqlClient.SqlConnection(builder.ConnectionString);
+                conn.Open();
+                _isSqlServerAvailable = true;
+                return true;
             }
             catch
             {
+                _isSqlServerAvailable = false;
+                return false;
             }
-
-            _isSqlServerAvailable = false;
-            return false;
         }
 
         public DbSet<KhachHang> KhachHangs { get; set; } = null!;

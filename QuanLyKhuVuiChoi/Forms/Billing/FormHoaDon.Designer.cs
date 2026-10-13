@@ -1,4 +1,4 @@
-namespace QuanLyKhuVuiChoi.Forms.Billing
+﻿namespace QuanLyKhuVuiChoi.Forms.Billing
 {
     partial class FormHoaDon
     {
@@ -80,7 +80,7 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(655, 30);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "🧾 QUẢN LÝ DANH SÁCH HÓA ĐƠN VÀ LỊCH SỬ GIAO DỊCH";
+            this.lblTitle.Text = " QUẢN LÝ DANH SÁCH HÓA ĐƠN VÀ LỊCH SỬ GIAO DỊCH";
             // 
             // pnlFilter
             // 
@@ -119,7 +119,7 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(115, 30);
             this.btnExport.TabIndex = 13;
-            this.btnExport.Text = "📤 Xuất Excel";
+            this.btnExport.Text = " Xuất Excel";
             this.btnExport.UseVisualStyleBackColor = false;
             this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
             // 
@@ -135,7 +135,7 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(100, 30);
             this.btnXoa.TabIndex = 12;
-            this.btnXoa.Text = "🗑️ Xóa HĐ";
+            this.btnXoa.Text = " Xóa HĐ";
             this.btnXoa.UseVisualStyleBackColor = false;
             this.btnXoa.Click += new System.EventHandler(this.BtnXoa_Click);
             // 
@@ -151,7 +151,7 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(120, 30);
             this.btnHuy.TabIndex = 11;
-            this.btnHuy.Text = "🚫 Hủy Hóa Đơn";
+            this.btnHuy.Text = " Hủy Hóa Đơn";
             this.btnHuy.UseVisualStyleBackColor = false;
             this.btnHuy.Click += new System.EventHandler(this.BtnHuy_Click);
             // 
@@ -167,7 +167,7 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.btnXemChiTiet.Name = "btnXemChiTiet";
             this.btnXemChiTiet.Size = new System.Drawing.Size(120, 30);
             this.btnXemChiTiet.TabIndex = 10;
-            this.btnXemChiTiet.Text = "👁️ Xem Chi Tiết";
+            this.btnXemChiTiet.Text = " Xem Chi Tiết";
             this.btnXemChiTiet.UseVisualStyleBackColor = false;
             this.btnXemChiTiet.Click += new System.EventHandler(this.BtnXemChiTiet_Click);
             // 
@@ -199,7 +199,7 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.btnLoc.Name = "btnLoc";
             this.btnLoc.Size = new System.Drawing.Size(75, 30);
             this.btnLoc.TabIndex = 8;
-            this.btnLoc.Text = "🔍 Lọc";
+            this.btnLoc.Text = " Lọc";
             this.btnLoc.UseVisualStyleBackColor = false;
             this.btnLoc.Click += new System.EventHandler(this.BtnLoc_Click);
             // 

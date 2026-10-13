@@ -1,4 +1,4 @@
-namespace QuanLyKhuVuiChoi.Forms.Report
+﻿namespace QuanLyKhuVuiChoi.Forms.Report
 {
     partial class FormBaoCaoDoanhThu
     {
@@ -84,7 +84,7 @@ namespace QuanLyKhuVuiChoi.Forms.Report
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(650, 30);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "📊 BÁO CÁO THỐNG KÊ DOANH THU KHU VUI CHƠI GIẢI TRÍ";
+            this.lblTitle.Text = " BÁO CÁO THỐNG KÊ DOANH THU KHU VUI CHƠI GIẢI TRÍ";
             // 
             // pnlFilter
             // 
@@ -117,7 +117,7 @@ namespace QuanLyKhuVuiChoi.Forms.Report
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(120, 30);
             this.btnExport.TabIndex = 7;
-            this.btnExport.Text = "📤 Xuất Excel";
+            this.btnExport.Text = " Xuất Excel";
             this.btnExport.UseVisualStyleBackColor = false;
             this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
             // 
@@ -133,7 +133,7 @@ namespace QuanLyKhuVuiChoi.Forms.Report
             this.btnBaoCao.Name = "btnBaoCao";
             this.btnBaoCao.Size = new System.Drawing.Size(135, 30);
             this.btnBaoCao.TabIndex = 6;
-            this.btnBaoCao.Text = "📊 Xem Báo Cáo";
+            this.btnBaoCao.Text = " Xem Báo Cáo";
             this.btnBaoCao.UseVisualStyleBackColor = false;
             this.btnBaoCao.Click += new System.EventHandler(this.BtnBaoCao_Click);
             // 
@@ -249,7 +249,7 @@ namespace QuanLyKhuVuiChoi.Forms.Report
             this.lblTitleKpi3.Name = "lblTitleKpi3";
             this.lblTitleKpi3.Size = new System.Drawing.Size(227, 20);
             this.lblTitleKpi3.TabIndex = 0;
-            this.lblTitleKpi3.Text = "📋 TỔNG SỐ HÓA ĐƠN ĐÃ LẬP";
+            this.lblTitleKpi3.Text = " TỔNG SỐ HÓA ĐƠN ĐÃ LẬP";
             // 
             // pnlKpi2
             // 
@@ -282,7 +282,7 @@ namespace QuanLyKhuVuiChoi.Forms.Report
             this.lblTitleKpi2.Name = "lblTitleKpi2";
             this.lblTitleKpi2.Size = new System.Drawing.Size(186, 20);
             this.lblTitleKpi2.TabIndex = 0;
-            this.lblTitleKpi2.Text = "🎟️ TỔNG SỐ VÉ ĐÃ BÁN";
+            this.lblTitleKpi2.Text = " TỔNG SỐ VÉ ĐÃ BÁN";
             // 
             // pnlKpi1
             // 
@@ -315,7 +315,7 @@ namespace QuanLyKhuVuiChoi.Forms.Report
             this.lblTitleKpi1.Name = "lblTitleKpi1";
             this.lblTitleKpi1.Size = new System.Drawing.Size(262, 20);
             this.lblTitleKpi1.TabIndex = 0;
-            this.lblTitleKpi1.Text = "💰 TỔNG DOANH THU KỲ BÁO CÁO";
+            this.lblTitleKpi1.Text = " TỔNG DOANH THU KỲ BÁO CÁO";
             // 
             // split
             // 

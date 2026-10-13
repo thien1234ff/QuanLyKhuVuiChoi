@@ -12,25 +12,55 @@ namespace QuanLyKhuVuiChoi.Data
             // Ensure database is created
             context.Database.EnsureCreated();
 
-            // Check if already seeded
-            if (context.NhanViens.Any())
+            // Check if already seeded and check for corrupted encoding (mojibake)
+            bool hasCorruptedData = false;
+            try
             {
-                return; // DB already has data
+                hasCorruptedData = context.NhanViens.Any(n => n.HoTen.Contains("Æ") || n.HoTen.Contains("Ã"));
+            }
+            catch
+            {
+                // Ignore query check errors if tables do not exist yet
+            }
+
+            if (context.NhanViens.Any() && !hasCorruptedData)
+            {
+                return; // DB already has good clean data
+            }
+
+            if (hasCorruptedData)
+            {
+                try
+                {
+                    context.ChiTietHoaDons.RemoveRange(context.ChiTietHoaDons);
+                    context.HoaDons.RemoveRange(context.HoaDons);
+                    context.TaiKhoans.RemoveRange(context.TaiKhoans);
+                    context.KhachHangs.RemoveRange(context.KhachHangs);
+                    context.Ves.RemoveRange(context.Ves);
+                    context.DichVus.RemoveRange(context.DichVus);
+                    context.TroChois.RemoveRange(context.TroChois);
+                    context.NhanViens.RemoveRange(context.NhanViens);
+                    context.SaveChanges();
+                }
+                catch
+                {
+                    // Fallback continue
+                }
             }
 
             // 1. Seed NhanVien
             var nhanViens = new List<NhanVien>
             {
-                new NhanVien { MaNV = "NV001", HoTen = "Trương Gia Bình", NgaySinh = new DateTime(1982, 5, 19), GioiTinh = "Nam", SoDienThoai = "0901234001", Email = "binh.truong@amusement.vn", DiaChi = "Quận Ba Đình, Hà Nội", ChucVu = "Quản lý", NgayVaoLam = new DateTime(2024, 1, 1), TrangThai = "Đang làm việc" },
-                new NhanVien { MaNV = "NV002", HoTen = "Lê Thị Hương", NgaySinh = new DateTime(1990, 9, 12), GioiTinh = "Nữ", SoDienThoai = "0901234002", Email = "huong.le@amusement.vn", DiaChi = "Quận Cầu Giấy, Hà Nội", ChucVu = "Thu ngân", NgayVaoLam = new DateTime(2024, 3, 15), TrangThai = "Đang làm việc" },
-                new NhanVien { MaNV = "NV003", HoTen = "Nguyễn Quang Hải", NgaySinh = new DateTime(1996, 4, 12), GioiTinh = "Nam", SoDienThoai = "0901234003", Email = "hai.nguyen@amusement.vn", DiaChi = "Quận Đống Đa, Hà Nội", ChucVu = "Thu ngân", NgayVaoLam = new DateTime(2024, 6, 1), TrangThai = "Đang làm việc" },
-                new NhanVien { MaNV = "NV004", HoTen = "Phạm Hải Yến", NgaySinh = new DateTime(1998, 11, 9), GioiTinh = "Nữ", SoDienThoai = "0901234004", Email = "yen.pham@amusement.vn", DiaChi = "Quận Thanh Xuân, Hà Nội", ChucVu = "Soát vé", NgayVaoLam = new DateTime(2024, 7, 10), TrangThai = "Đang làm việc" },
-                new NhanVien { MaNV = "NV005", HoTen = "Trần Minh Vương", NgaySinh = new DateTime(1995, 3, 28), GioiTinh = "Nam", SoDienThoai = "0901234005", Email = "vuong.tran@amusement.vn", DiaChi = "Quận Nam Từ Liêm, Hà Nội", ChucVu = "Kỹ thuật", NgayVaoLam = new DateTime(2024, 2, 20), TrangThai = "Đang làm việc" },
-                new NhanVien { MaNV = "NV006", HoTen = "Đỗ Hùng Dũng", NgaySinh = new DateTime(1993, 9, 8), GioiTinh = "Nam", SoDienThoai = "0901234006", Email = "dung.do@amusement.vn", DiaChi = "Quận Hoàng Mai, Hà Nội", ChucVu = "Kỹ thuật", NgayVaoLam = new DateTime(2024, 4, 5), TrangThai = "Đang làm việc" },
-                new NhanVien { MaNV = "NV007", HoTen = "Vũ Văn Thanh", NgaySinh = new DateTime(1996, 4, 14), GioiTinh = "Nam", SoDienThoai = "0901234007", Email = "thanh.vu@amusement.vn", DiaChi = "Quận Hà Đông, Hà Nội", ChucVu = "Bảo vệ", NgayVaoLam = new DateTime(2024, 5, 12), TrangThai = "Đang làm việc" },
-                new NhanVien { MaNV = "NV008", HoTen = "Nguyễn Thị Tuyết Dung", NgaySinh = new DateTime(1993, 12, 13), GioiTinh = "Nữ", SoDienThoai = "0901234008", Email = "dung.tuyet@amusement.vn", DiaChi = "Quận Cầu Giấy, Hà Nội", ChucVu = "Chăm sóc khách hàng", NgayVaoLam = new DateTime(2024, 8, 1), TrangThai = "Đang làm việc" },
-                new NhanVien { MaNV = "NV009", HoTen = "Bùi Tiến Dũng", NgaySinh = new DateTime(1997, 2, 28), GioiTinh = "Nam", SoDienThoai = "0901234009", Email = "dung.bui@amusement.vn", DiaChi = "Quận Tây Hồ, Hà Nội", ChucVu = "Soát vé", NgayVaoLam = new DateTime(2024, 9, 1), TrangThai = "Đang làm việc" },
-                new NhanVien { MaNV = "NV010", HoTen = "Hoàng Đức Tùng", NgaySinh = new DateTime(1999, 7, 21), GioiTinh = "Nam", SoDienThoai = "0901234010", Email = "tung.hoang@amusement.vn", DiaChi = "Quận Long Biên, Hà Nội", ChucVu = "Thu ngân", NgayVaoLam = new DateTime(2024, 10, 15), TrangThai = "Đang làm việc" }
+                new NhanVien { MaNV = "NV001", HoTen = "Trương Gia Bình", NgaySinh = new DateTime(1982, 5, 19), GioiTinh = "Nam", SoDienThoai = "0901234001", Email = "binh.truong@amusement.vn", DiaChi = "Quận Ba Đình, Hà Nội", ChucVu = "Admin", NgayVaoLam = new DateTime(2024, 1, 1), TrangThai = "Đang làm việc" },
+                new NhanVien { MaNV = "NV002", HoTen = "Lê Thị Hương", NgaySinh = new DateTime(1990, 9, 12), GioiTinh = "Nữ", SoDienThoai = "0901234002", Email = "huong.le@amusement.vn", DiaChi = "Quận Cầu Giấy, Hà Nội", ChucVu = "Nhân viên", NgayVaoLam = new DateTime(2024, 3, 15), TrangThai = "Đang làm việc" },
+                new NhanVien { MaNV = "NV003", HoTen = "Nguyễn Quang Hải", NgaySinh = new DateTime(1996, 4, 12), GioiTinh = "Nam", SoDienThoai = "0901234003", Email = "hai.nguyen@amusement.vn", DiaChi = "Quận Đống Đa, Hà Nội", ChucVu = "Nhân viên", NgayVaoLam = new DateTime(2024, 6, 1), TrangThai = "Đang làm việc" },
+                new NhanVien { MaNV = "NV004", HoTen = "Phạm Hải Yến", NgaySinh = new DateTime(1998, 11, 9), GioiTinh = "Nữ", SoDienThoai = "0901234004", Email = "yen.pham@amusement.vn", DiaChi = "Quận Thanh Xuân, Hà Nội", ChucVu = "Nhân viên", NgayVaoLam = new DateTime(2024, 7, 10), TrangThai = "Đang làm việc" },
+                new NhanVien { MaNV = "NV005", HoTen = "Trần Minh Vương", NgaySinh = new DateTime(1995, 3, 28), GioiTinh = "Nam", SoDienThoai = "0901234005", Email = "vuong.tran@amusement.vn", DiaChi = "Quận Nam Từ Liêm, Hà Nội", ChucVu = "Nhân viên", NgayVaoLam = new DateTime(2024, 2, 20), TrangThai = "Đang làm việc" },
+                new NhanVien { MaNV = "NV006", HoTen = "Đỗ Hùng Dũng", NgaySinh = new DateTime(1993, 9, 8), GioiTinh = "Nam", SoDienThoai = "0901234006", Email = "dung.do@amusement.vn", DiaChi = "Quận Hoàng Mai, Hà Nội", ChucVu = "Nhân viên", NgayVaoLam = new DateTime(2024, 4, 5), TrangThai = "Đang làm việc" },
+                new NhanVien { MaNV = "NV007", HoTen = "Vũ Văn Thanh", NgaySinh = new DateTime(1996, 4, 14), GioiTinh = "Nam", SoDienThoai = "0901234007", Email = "thanh.vu@amusement.vn", DiaChi = "Quận Hà Đông, Hà Nội", ChucVu = "Nhân viên", NgayVaoLam = new DateTime(2024, 5, 12), TrangThai = "Đang làm việc" },
+                new NhanVien { MaNV = "NV008", HoTen = "Nguyễn Thị Tuyết Dung", NgaySinh = new DateTime(1993, 12, 13), GioiTinh = "Nữ", SoDienThoai = "0901234008", Email = "dung.tuyet@amusement.vn", DiaChi = "Quận Cầu Giấy, Hà Nội", ChucVu = "Nhân viên", NgayVaoLam = new DateTime(2024, 8, 1), TrangThai = "Đang làm việc" },
+                new NhanVien { MaNV = "NV009", HoTen = "Bùi Tiến Dũng", NgaySinh = new DateTime(1997, 2, 28), GioiTinh = "Nam", SoDienThoai = "0901234009", Email = "dung.bui@amusement.vn", DiaChi = "Quận Tây Hồ, Hà Nội", ChucVu = "Nhân viên", NgayVaoLam = new DateTime(2024, 9, 1), TrangThai = "Đang làm việc" },
+                new NhanVien { MaNV = "NV010", HoTen = "Hoàng Đức Tùng", NgaySinh = new DateTime(1999, 7, 21), GioiTinh = "Nam", SoDienThoai = "0901234010", Email = "tung.hoang@amusement.vn", DiaChi = "Quận Long Biên, Hà Nội", ChucVu = "Nhân viên", NgayVaoLam = new DateTime(2024, 10, 15), TrangThai = "Đang làm việc" }
             };
             context.NhanViens.AddRange(nhanViens);
             context.SaveChanges();

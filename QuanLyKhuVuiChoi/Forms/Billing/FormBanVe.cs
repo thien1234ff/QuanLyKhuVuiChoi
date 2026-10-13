@@ -65,7 +65,7 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
 
                 // Load Customers
                 cboCustomer.Items.Clear();
-                cboCustomer.Items.Add(new ComboItem { Text = "👤 Khách vãng lai tại quầy", Value = "" });
+                cboCustomer.Items.Add(new ComboItem { Text = "Khách vãng lai tại quầy", Value = "" });
                 var customers = _customerService.GetAll();
                 foreach (var c in customers)
                 {
@@ -89,21 +89,32 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
 
         private void BtnCategory_Click(object? sender, EventArgs e)
         {
-            if (sender is Button btn && btn.Tag is string cat)
+            string cat = "TatCa";
+            if (sender == btnCatTicket || (sender is Button b1 && b1.Tag?.ToString() == "Ve"))
             {
-                _activeCategory = cat;
-
-                btnCatAll.BackColor = (cat == "TatCa") ? Color.FromArgb(79, 70, 229) : Color.White;
-                btnCatAll.ForeColor = (cat == "TatCa") ? Color.White : Color.FromArgb(71, 85, 105);
-
-                btnCatTicket.BackColor = (cat == "Ve") ? Color.FromArgb(79, 70, 229) : Color.White;
-                btnCatTicket.ForeColor = (cat == "Ve") ? Color.White : Color.FromArgb(71, 85, 105);
-
-                btnCatService.BackColor = (cat == "DichVu") ? Color.FromArgb(79, 70, 229) : Color.White;
-                btnCatService.ForeColor = (cat == "DichVu") ? Color.White : Color.FromArgb(71, 85, 105);
-
-                RenderTicketCards();
+                cat = "Ve";
             }
+            else if (sender == btnCatService || (sender is Button b2 && b2.Tag?.ToString() == "DichVu"))
+            {
+                cat = "DichVu";
+            }
+            else
+            {
+                cat = "TatCa";
+            }
+
+            _activeCategory = cat;
+
+            btnCatAll.BackColor = (cat == "TatCa") ? Color.FromArgb(79, 70, 229) : Color.FromArgb(241, 245, 249);
+            btnCatAll.ForeColor = (cat == "TatCa") ? Color.White : Color.FromArgb(71, 85, 105);
+
+            btnCatTicket.BackColor = (cat == "Ve") ? Color.FromArgb(79, 70, 229) : Color.FromArgb(241, 245, 249);
+            btnCatTicket.ForeColor = (cat == "Ve") ? Color.White : Color.FromArgb(71, 85, 105);
+
+            btnCatService.BackColor = (cat == "DichVu") ? Color.FromArgb(79, 70, 229) : Color.FromArgb(241, 245, 249);
+            btnCatService.ForeColor = (cat == "DichVu") ? Color.White : Color.FromArgb(71, 85, 105);
+
+            RenderTicketCards();
         }
 
         private void RenderTicketCards()
@@ -115,7 +126,7 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             {
                 foreach (var ticket in _availableTickets)
                 {
-                    pnlTicketCards.Controls.Add(CreateTicketCard(ticket.MaVe, ticket.TenVe, ticket.GiaVe, ticket.MoTa ?? "Vé tham quan tiêu chuẩn", "Ve", "🎟️"));
+                    pnlTicketCards.Controls.Add(CreateTicketCard(ticket.MaVe, ticket.TenVe, ticket.GiaVe, ticket.MoTa ?? "Vé tham quan tiêu chuẩn", "Ve", ""));
                 }
             }
 
@@ -124,7 +135,7 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             {
                 foreach (var s in _availableServices)
                 {
-                    pnlTicketCards.Controls.Add(CreateTicketCard(s.MaDichVu, s.TenDichVu, s.DonGia, $"Tồn kho: {s.SoLuongTon}", "DichVu", "🍔"));
+                    pnlTicketCards.Controls.Add(CreateTicketCard(s.MaDichVu, s.TenDichVu, s.DonGia, $"Tồn kho: {s.SoLuongTon}", "DichVu", ""));
                 }
             }
         }
@@ -144,24 +155,14 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
                 e.Graphics.DrawRectangle(pen, 0, 0, card.Width - 1, card.Height - 1);
             };
 
-            // Icon Badge
-            var lblIcon = new Label
-            {
-                Text = icon,
-                Font = new Font("Segoe UI Emoji", 14F),
-                Location = new Point(12, 10),
-                Size = new Size(32, 28),
-                BackColor = Color.Transparent
-            };
-
             // Name
             var lblName = new Label
             {
                 Text = name,
-                Font = new Font("Segoe UI", 9F, FontStyle.Bold),
+                Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(15, 23, 42),
-                Location = new Point(48, 10),
-                Size = new Size(160, 20),
+                Location = new Point(14, 10),
+                Size = new Size(195, 22),
                 AutoEllipsis = true
             };
 
@@ -171,7 +172,7 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
                 Text = price.ToString("N0") + "đ",
                 Font = new Font("Segoe UI", 10.5F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(79, 70, 229),
-                Location = new Point(48, 30),
+                Location = new Point(14, 32),
                 AutoSize = true
             };
 
@@ -255,7 +256,6 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             pnlStepper.Controls.Add(lblQty);
             pnlStepper.Controls.Add(btnPlus);
 
-            card.Controls.Add(lblIcon);
             card.Controls.Add(lblName);
             card.Controls.Add(lblPrice);
             card.Controls.Add(lblDesc);
@@ -354,7 +354,7 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
 
                     var btnRemove = new Button
                     {
-                        Text = "✕",
+                        Text = "",
                         Font = new Font("Segoe UI", 9F, FontStyle.Bold),
                         Size = new Size(24, 24),
                         Location = new Point(320, 12),

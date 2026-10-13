@@ -78,7 +78,7 @@ namespace QuanLyKhuVuiChoi.Forms.Auth
             lblLogo.Name = "lblLogo";
             lblLogo.Size = new Size(334, 37);
             lblLogo.TabIndex = 0;
-            lblLogo.Text = "🎡 WONDERLAND PARK";
+            lblLogo.Text = "WONDERLAND PARK";
             // 
             // pnlCard
             // 

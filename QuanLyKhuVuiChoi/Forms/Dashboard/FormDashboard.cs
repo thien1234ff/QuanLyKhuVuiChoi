@@ -206,10 +206,10 @@ namespace QuanLyKhuVuiChoi.Forms.Dashboard
 
             var attractions = new[]
             {
-                new { Name = "Roller Coaster", Status = "Đang hoạt động", StatusColor = Color.FromArgb(16, 185, 129), StatusBg = Color.FromArgb(236, 253, 245), Cur = 24, Max = 30, Wait = "15 phút", Icon = "🎢" },
-                new { Name = "Water Park", Status = "Đang hoạt động", StatusColor = Color.FromArgb(16, 185, 129), StatusBg = Color.FromArgb(236, 253, 245), Cur = 48, Max = 50, Wait = "20 phút", Icon = "🏊" },
-                new { Name = "Kids Zone", Status = "Đang hoạt động", StatusColor = Color.FromArgb(16, 185, 129), StatusBg = Color.FromArgb(236, 253, 245), Cur = 30, Max = 40, Wait = "10 phút", Icon = "🧒" },
-                new { Name = "Game Center", Status = "Đông khách", StatusColor = Color.FromArgb(194, 65, 12), StatusBg = Color.FromArgb(255, 237, 213), Cur = 40, Max = 40, Wait = "30 phút", Icon = "🎮" },
+                new { Name = "Roller Coaster", Status = "Đang hoạt động", StatusColor = Color.FromArgb(16, 185, 129), StatusBg = Color.FromArgb(236, 253, 245), Cur = 24, Max = 30, Wait = "15 phút" },
+                new { Name = "Water Park", Status = "Đang hoạt động", StatusColor = Color.FromArgb(16, 185, 129), StatusBg = Color.FromArgb(236, 253, 245), Cur = 48, Max = 50, Wait = "20 phút" },
+                new { Name = "Kids Zone", Status = "Đang hoạt động", StatusColor = Color.FromArgb(16, 185, 129), StatusBg = Color.FromArgb(236, 253, 245), Cur = 30, Max = 40, Wait = "10 phút" },
+                new { Name = "Game Center", Status = "Đông khách", StatusColor = Color.FromArgb(194, 65, 12), StatusBg = Color.FromArgb(255, 237, 213), Cur = 40, Max = 40, Wait = "30 phút" },
             };
 
             int y = 5;
@@ -223,33 +223,23 @@ namespace QuanLyKhuVuiChoi.Forms.Dashboard
                     BackColor = Color.White
                 };
 
-                var lblIcon = new Label
-                {
-                    Text = item.Icon,
-                    Font = new Font("Segoe UI Emoji", 13F),
-                    Size = new Size(32, 32),
-                    Location = new Point(4, 8),
-                    TextAlign = ContentAlignment.MiddleCenter,
-                    BackColor = Color.FromArgb(248, 250, 252)
-                };
-
                 var lblName = new Label
                 {
                     Text = item.Name,
                     Font = new Font("Segoe UI", 9F, FontStyle.Bold),
                     ForeColor = Color.FromArgb(15, 23, 42),
-                    Location = new Point(42, 6),
+                    Location = new Point(10, 6),
                     AutoSize = true
                 };
 
                 var lblStatus = new Label
                 {
-                    Text = "● " + item.Status,
+                    Text = item.Status,
                     Font = new Font("Segoe UI", 7.5F, FontStyle.Bold),
                     ForeColor = item.StatusColor,
                     BackColor = item.StatusBg,
-                    Padding = new Padding(3, 1, 3, 1),
-                    Location = new Point(42, 26),
+                    Padding = new Padding(4, 2, 4, 2),
+                    Location = new Point(10, 26),
                     AutoSize = true
                 };
 
@@ -258,20 +248,19 @@ namespace QuanLyKhuVuiChoi.Forms.Dashboard
                     Text = $"{item.Cur}/{item.Max}",
                     Font = new Font("Segoe UI", 8.5F, FontStyle.Bold),
                     ForeColor = Color.FromArgb(100, 116, 139),
-                    Location = new Point(190, 14),
+                    Location = new Point(170, 15),
                     AutoSize = true
                 };
 
                 var lblWait = new Label
                 {
-                    Text = $"🕒 {item.Wait}",
+                    Text = item.Wait,
                     Font = new Font("Segoe UI", 8.5F),
                     ForeColor = Color.FromArgb(100, 116, 139),
-                    Location = new Point(255, 14),
+                    Location = new Point(240, 15),
                     AutoSize = true
                 };
 
-                row.Controls.Add(lblIcon);
                 row.Controls.Add(lblName);
                 row.Controls.Add(lblStatus);
                 row.Controls.Add(lblCap);

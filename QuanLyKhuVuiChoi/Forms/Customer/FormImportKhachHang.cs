@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -66,7 +66,7 @@ namespace QuanLyKhuVuiChoi.Forms.Customer
                 lstErrors.Items.Clear();
                 foreach (var err in currentResult.Errors)
                 {
-                    lstErrors.Items.Add($"❌ {err}");
+                    lstErrors.Items.Add($" {err}");
                 }
 
                 lblSummary.Text = $"Tổng đọc: {currentResult.TotalRows} dòng | Hợp lệ: {currentResult.SuccessCount} dòng | Lỗi: {currentResult.ErrorCount} dòng";

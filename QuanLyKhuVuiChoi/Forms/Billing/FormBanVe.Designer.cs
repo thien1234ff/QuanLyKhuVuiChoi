@@ -91,7 +91,7 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(437, 35);
             this.lblTitle.TabIndex = 1;
-            this.lblTitle.Text = "🎟️ TẠO ĐƠN BÁN VÉ & DỊCH VỤ (POS)";
+            this.lblTitle.Text = " TẠO ĐƠN BÁN VÉ & DỊCH VỤ (POS)";
             // 
             // lblBreadcrumb
             // 
@@ -164,7 +164,8 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.btnCatService.Name = "btnCatService";
             this.btnCatService.Size = new System.Drawing.Size(120, 32);
             this.btnCatService.TabIndex = 2;
-            this.btnCatService.Text = "☕ Dịch Vụ";
+            this.btnCatService.Tag = "DichVu";
+            this.btnCatService.Text = "Dịch Vụ";
             this.btnCatService.UseVisualStyleBackColor = false;
             this.btnCatService.Click += new System.EventHandler(this.BtnCategory_Click);
             // 
@@ -180,7 +181,8 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.btnCatTicket.Name = "btnCatTicket";
             this.btnCatTicket.Size = new System.Drawing.Size(110, 32);
             this.btnCatTicket.TabIndex = 1;
-            this.btnCatTicket.Text = "🎟️ Vé Vào";
+            this.btnCatTicket.Tag = "Ve";
+            this.btnCatTicket.Text = "Vé Vào";
             this.btnCatTicket.UseVisualStyleBackColor = false;
             this.btnCatTicket.Click += new System.EventHandler(this.BtnCategory_Click);
             // 
@@ -196,6 +198,7 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.btnCatAll.Name = "btnCatAll";
             this.btnCatAll.Size = new System.Drawing.Size(100, 32);
             this.btnCatAll.TabIndex = 0;
+            this.btnCatAll.Tag = "TatCa";
             this.btnCatAll.Text = "Tất cả";
             this.btnCatAll.UseVisualStyleBackColor = false;
             this.btnCatAll.Click += new System.EventHandler(this.BtnCategory_Click);
@@ -289,7 +292,7 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.btnCheckout.Name = "btnCheckout";
             this.btnCheckout.Size = new System.Drawing.Size(368, 45);
             this.btnCheckout.TabIndex = 8;
-            this.btnCheckout.Text = "💳 TIẾP TỤC THANH TOÁN  →";
+            this.btnCheckout.Text = " TIẾP TỤC THANH TOÁN  ";
             this.btnCheckout.UseVisualStyleBackColor = false;
             this.btnCheckout.Click += new System.EventHandler(this.BtnCheckout_Click);
             // 
@@ -412,7 +415,7 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.lblCartTitle.Name = "lblCartTitle";
             this.lblCartTitle.Size = new System.Drawing.Size(188, 25);
             this.lblCartTitle.TabIndex = 0;
-            this.lblCartTitle.Text = "🛒 Giỏ Hàng Vé/DV";
+            this.lblCartTitle.Text = " Giỏ Hàng Vé/DV";
             // 
             // FormBanVe
             // 

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
 using QuanLyKhuVuiChoi.Data;
@@ -81,12 +81,12 @@ namespace QuanLyKhuVuiChoi.Forms.EmployeeTicketImportExport
             };
 
             // TAB 1: NHÂN VIÊN
-            var tabEmployee = new TabPage("👔 Nhập / Xuất Nhân Viên");
+            var tabEmployee = new TabPage(" Nhập / Xuất Nhân Viên");
             BuildEmployeeTab(tabEmployee);
             tabControl.TabPages.Add(tabEmployee);
 
             // TAB 2: VÉ
-            var tabTicket = new TabPage("🎟️ Nhập / Xuất Loại Vé");
+            var tabTicket = new TabPage(" Nhập / Xuất Loại Vé");
             BuildTicketTab(tabTicket);
             tabControl.TabPages.Add(tabTicket);
 
@@ -103,15 +103,15 @@ namespace QuanLyKhuVuiChoi.Forms.EmployeeTicketImportExport
             var lbl = new Label { Text = "File Excel Nhân Viên:", Location = new Point(15, 18), AutoSize = true, Font = UITheme.BoldFont };
             txtEmployeeFile = new TextBox { Location = new Point(165, 15), Size = new Size(410, 25), ReadOnly = true, Font = UITheme.MainFont };
 
-            var btnBrowse = new Button { Text = "📂 Chọn File", Location = new Point(585, 13), Size = new Size(110, 30) };
+            var btnBrowse = new Button { Text = " Chọn File", Location = new Point(585, 13), Size = new Size(110, 30) };
             UITheme.StyleButton(btnBrowse, UITheme.Primary, Color.White);
             btnBrowse.Click += (s, e) => BrowseEmployeeFile();
 
-            var btnExport = new Button { Text = "📤 Xuất Danh Sách Ra Excel", Location = new Point(705, 13), Size = new Size(190, 30) };
+            var btnExport = new Button { Text = " Xuất Danh Sách Ra Excel", Location = new Point(705, 13), Size = new Size(190, 30) };
             UITheme.StyleButton(btnExport, Color.FromArgb(16, 185, 129), Color.White);
             btnExport.Click += (s, e) => ExportEmployeeToExcel();
 
-            var btnTemplate = new Button { Text = "📋 File Mẫu", Location = new Point(905, 13), Size = new Size(100, 30) };
+            var btnTemplate = new Button { Text = " File Mẫu", Location = new Point(905, 13), Size = new Size(100, 30) };
             UITheme.StyleButton(btnTemplate, Color.FromArgb(100, 116, 139), Color.White);
             btnTemplate.Click += (s, e) => DownloadEmployeeTemplate();
 
@@ -126,7 +126,7 @@ namespace QuanLyKhuVuiChoi.Forms.EmployeeTicketImportExport
 
             // Bottom Bar
             var pnlBottom = new Panel { Dock = DockStyle.Bottom, Height = 60, BackColor = Color.White, Padding = new Padding(15) };
-            btnConfirmEmployeeImport = new Button { Text = "💾 Lưu Nhân Viên Vào SQL Server", Location = new Point(710, 12), Size = new Size(280, 36), Enabled = false };
+            btnConfirmEmployeeImport = new Button { Text = " Lưu Nhân Viên Vào SQL Server", Location = new Point(710, 12), Size = new Size(280, 36), Enabled = false };
             UITheme.StyleButton(btnConfirmEmployeeImport, UITheme.Success, Color.White);
             btnConfirmEmployeeImport.Click += (s, e) => SaveEmployeeImport();
             pnlBottom.Controls.Add(btnConfirmEmployeeImport);
@@ -155,15 +155,15 @@ namespace QuanLyKhuVuiChoi.Forms.EmployeeTicketImportExport
             var lbl = new Label { Text = "File Excel Loại Vé:", Location = new Point(15, 18), AutoSize = true, Font = UITheme.BoldFont };
             txtTicketFile = new TextBox { Location = new Point(155, 15), Size = new Size(420, 25), ReadOnly = true, Font = UITheme.MainFont };
 
-            var btnBrowse = new Button { Text = "📂 Chọn File", Location = new Point(585, 13), Size = new Size(110, 30) };
+            var btnBrowse = new Button { Text = " Chọn File", Location = new Point(585, 13), Size = new Size(110, 30) };
             UITheme.StyleButton(btnBrowse, UITheme.Primary, Color.White);
             btnBrowse.Click += (s, e) => BrowseTicketFile();
 
-            var btnExport = new Button { Text = "📤 Xuất Danh Sách Ra Excel", Location = new Point(705, 13), Size = new Size(190, 30) };
+            var btnExport = new Button { Text = " Xuất Danh Sách Ra Excel", Location = new Point(705, 13), Size = new Size(190, 30) };
             UITheme.StyleButton(btnExport, Color.FromArgb(16, 185, 129), Color.White);
             btnExport.Click += (s, e) => ExportTicketToExcel();
 
-            var btnTemplate = new Button { Text = "📋 File Mẫu", Location = new Point(905, 13), Size = new Size(100, 30) };
+            var btnTemplate = new Button { Text = " File Mẫu", Location = new Point(905, 13), Size = new Size(100, 30) };
             UITheme.StyleButton(btnTemplate, Color.FromArgb(100, 116, 139), Color.White);
             btnTemplate.Click += (s, e) => DownloadTicketTemplate();
 
@@ -178,7 +178,7 @@ namespace QuanLyKhuVuiChoi.Forms.EmployeeTicketImportExport
 
             // Bottom Bar
             var pnlBottom = new Panel { Dock = DockStyle.Bottom, Height = 60, BackColor = Color.White, Padding = new Padding(15) };
-            btnConfirmTicketImport = new Button { Text = "💾 Lưu Vé Vào SQL Server", Location = new Point(720, 12), Size = new Size(270, 36), Enabled = false };
+            btnConfirmTicketImport = new Button { Text = " Lưu Vé Vào SQL Server", Location = new Point(720, 12), Size = new Size(270, 36), Enabled = false };
             UITheme.StyleButton(btnConfirmTicketImport, UITheme.Success, Color.White);
             btnConfirmTicketImport.Click += (s, e) => SaveTicketImport();
             pnlBottom.Controls.Add(btnConfirmTicketImport);

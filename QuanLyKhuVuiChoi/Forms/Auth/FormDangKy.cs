@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Windows.Forms;
 using QuanLyKhuVuiChoi.Data;
 using QuanLyKhuVuiChoi.Services;
@@ -62,6 +62,11 @@ namespace QuanLyKhuVuiChoi.Forms.Auth
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void txtTenDangNhap_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,4 +1,4 @@
-namespace QuanLyKhuVuiChoi.Forms.Game
+﻿namespace QuanLyKhuVuiChoi.Forms.Game
 {
     partial class FormTroChoi
     {
@@ -96,7 +96,7 @@ namespace QuanLyKhuVuiChoi.Forms.Game
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(434, 32);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "🎢 QUẢN LÝ DANH MỤC TRÒ CHƠI";
+            this.lblTitle.Text = " QUẢN LÝ DANH MỤC TRÒ CHƠI";
             // 
             // pnlInput
             // 
@@ -145,7 +145,7 @@ namespace QuanLyKhuVuiChoi.Forms.Game
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.Size = new System.Drawing.Size(330, 32);
             this.btnLamMoi.TabIndex = 20;
-            this.btnLamMoi.Text = "🔄 Làm Mới Dữ Liệu";
+            this.btnLamMoi.Text = " Làm Mới Dữ Liệu";
             this.btnLamMoi.UseVisualStyleBackColor = false;
             this.btnLamMoi.Click += new System.EventHandler(this.BtnLamMoi_Click);
             // 
@@ -161,7 +161,7 @@ namespace QuanLyKhuVuiChoi.Forms.Game
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(100, 34);
             this.btnXoa.TabIndex = 19;
-            this.btnXoa.Text = "🗑️ Xóa";
+            this.btnXoa.Text = " Xóa";
             this.btnXoa.UseVisualStyleBackColor = false;
             this.btnXoa.Click += new System.EventHandler(this.BtnXoa_Click);
             // 
@@ -177,7 +177,7 @@ namespace QuanLyKhuVuiChoi.Forms.Game
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(100, 34);
             this.btnSua.TabIndex = 18;
-            this.btnSua.Text = "✏️ Sửa";
+            this.btnSua.Text = " Sửa";
             this.btnSua.UseVisualStyleBackColor = false;
             this.btnSua.Click += new System.EventHandler(this.BtnSua_Click);
             // 
@@ -193,7 +193,7 @@ namespace QuanLyKhuVuiChoi.Forms.Game
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(100, 34);
             this.btnThem.TabIndex = 17;
-            this.btnThem.Text = "➕ Thêm";
+            this.btnThem.Text = " Thêm";
             this.btnThem.UseVisualStyleBackColor = false;
             this.btnThem.Click += new System.EventHandler(this.BtnThem_Click);
             // 

@@ -1,4 +1,4 @@
-namespace QuanLyKhuVuiChoi.Forms.Customer
+﻿namespace QuanLyKhuVuiChoi.Forms.Customer
 {
     partial class FormKhachHang
     {
@@ -91,7 +91,7 @@ namespace QuanLyKhuVuiChoi.Forms.Customer
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(437, 32);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "👤 QUẢN LÝ THÔNG TIN KHÁCH HÀNG";
+            this.lblTitle.Text = " QUẢN LÝ THÔNG TIN KHÁCH HÀNG";
             // 
             // pnlInput
             // 
@@ -140,7 +140,7 @@ namespace QuanLyKhuVuiChoi.Forms.Customer
             this.btnMoExport.Name = "btnMoExport";
             this.btnMoExport.Size = new System.Drawing.Size(155, 34);
             this.btnMoExport.TabIndex = 20;
-            this.btnMoExport.Text = "📤 Xuất Excel";
+            this.btnMoExport.Text = " Xuất Excel";
             this.btnMoExport.UseVisualStyleBackColor = false;
             this.btnMoExport.Click += new System.EventHandler(this.BtnMoExport_Click);
             // 
@@ -156,7 +156,7 @@ namespace QuanLyKhuVuiChoi.Forms.Customer
             this.btnMoImport.Name = "btnMoImport";
             this.btnMoImport.Size = new System.Drawing.Size(155, 34);
             this.btnMoImport.TabIndex = 19;
-            this.btnMoImport.Text = "📥 Nhập Excel";
+            this.btnMoImport.Text = " Nhập Excel";
             this.btnMoImport.UseVisualStyleBackColor = false;
             this.btnMoImport.Click += new System.EventHandler(this.BtnMoImport_Click);
             // 
@@ -172,7 +172,7 @@ namespace QuanLyKhuVuiChoi.Forms.Customer
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.Size = new System.Drawing.Size(320, 32);
             this.btnLamMoi.TabIndex = 18;
-            this.btnLamMoi.Text = "🔄 Làm Mới Form";
+            this.btnLamMoi.Text = " Làm Mới Form";
             this.btnLamMoi.UseVisualStyleBackColor = false;
             this.btnLamMoi.Click += new System.EventHandler(this.BtnLamMoi_Click);
             // 
@@ -188,7 +188,7 @@ namespace QuanLyKhuVuiChoi.Forms.Customer
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(100, 34);
             this.btnXoa.TabIndex = 17;
-            this.btnXoa.Text = "🗑️ Xóa";
+            this.btnXoa.Text = " Xóa";
             this.btnXoa.UseVisualStyleBackColor = false;
             this.btnXoa.Click += new System.EventHandler(this.BtnXoa_Click);
             // 
@@ -204,7 +204,7 @@ namespace QuanLyKhuVuiChoi.Forms.Customer
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(100, 34);
             this.btnSua.TabIndex = 16;
-            this.btnSua.Text = "✏️ Sửa";
+            this.btnSua.Text = " Sửa";
             this.btnSua.UseVisualStyleBackColor = false;
             this.btnSua.Click += new System.EventHandler(this.BtnSua_Click);
             // 
@@ -220,7 +220,7 @@ namespace QuanLyKhuVuiChoi.Forms.Customer
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(100, 34);
             this.btnThem.TabIndex = 15;
-            this.btnThem.Text = "➕ Thêm";
+            this.btnThem.Text = " Thêm";
             this.btnThem.UseVisualStyleBackColor = false;
             this.btnThem.Click += new System.EventHandler(this.BtnThem_Click);
             // 
@@ -440,7 +440,7 @@ namespace QuanLyKhuVuiChoi.Forms.Customer
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(80, 30);
             this.btnSearch.TabIndex = 3;
-            this.btnSearch.Text = "🔍 Tìm";
+            this.btnSearch.Text = " Tìm";
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
             // 

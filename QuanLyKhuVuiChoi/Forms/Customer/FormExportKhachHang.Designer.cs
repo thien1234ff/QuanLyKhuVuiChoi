@@ -1,4 +1,4 @@
-namespace QuanLyKhuVuiChoi.Forms.Customer
+﻿namespace QuanLyKhuVuiChoi.Forms.Customer
 {
     partial class FormExportKhachHang
     {
@@ -61,7 +61,7 @@ namespace QuanLyKhuVuiChoi.Forms.Customer
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(653, 30);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "📤 XUẤT BÁO CÁO DANH SÁCH KHÁCH HÀNG RA FILE EXCEL";
+            this.lblTitle.Text = " XUẤT BÁO CÁO DANH SÁCH KHÁCH HÀNG RA FILE EXCEL";
             // 
             // pnlFilter
             // 
@@ -213,7 +213,7 @@ namespace QuanLyKhuVuiChoi.Forms.Customer
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(220, 36);
             this.btnExport.TabIndex = 1;
-            this.btnExport.Text = "📤 XUẤT FILE EXCEL";
+            this.btnExport.Text = " XUẤT FILE EXCEL";
             this.btnExport.UseVisualStyleBackColor = false;
             this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
             // 

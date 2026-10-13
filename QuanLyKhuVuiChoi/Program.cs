@@ -26,23 +26,7 @@ namespace QuanLyKhuVuiChoi
                 return;
             }
 
-            if (args != null && args.Length > 0 && args[0] == "--test-db")
-            {
-                try
-                {
-                    using var db = new QuanLyKhuVuiChoiDbContext();
-                    Console.WriteLine($"Provider: {db.Database.ProviderName}");
-                    DbInitializer.Initialize(db);
-                    Console.WriteLine($"NhanVien count: {db.NhanViens.Count()}");
-                    Console.WriteLine($"KhachHang count: {db.KhachHangs.Count()}");
-                    Console.WriteLine($"TroChoi count: {db.TroChois.Count()}");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"DB error: {ex}");
-                }
-                return;
-            }
+
 
             ApplicationConfiguration.Initialize();
 

@@ -50,7 +50,7 @@ namespace QuanLyKhuVuiChoi.Forms.Employee
             dgvNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "NgaySinh", HeaderText = "NGÀY SINH", DataPropertyName = "NgaySinhStr", Width = 110 });
             dgvNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "GioiTinh", HeaderText = "GIỚI TÍNH", DataPropertyName = "GioiTinh", Width = 80 });
             dgvNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "SoDienThoai", HeaderText = "SỐ ĐIỆN THOẠI", DataPropertyName = "SoDienThoai", Width = 120 });
-            dgvNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "ChucVu", HeaderText = "CHỨC VỤ", DataPropertyName = "ChucVu", Width = 120 });
+            dgvNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "ChucVu", HeaderText = "QUYỀN HẠN", DataPropertyName = "ChucVu", Width = 120 });
             dgvNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "TrangThai", HeaderText = "TRẠNG THÁI", DataPropertyName = "TrangThai", Width = 120 });
             dgvNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "DiaChi", HeaderText = "ĐỊA CHỈ", DataPropertyName = "DiaChi", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill });
         }
@@ -114,7 +114,7 @@ namespace QuanLyKhuVuiChoi.Forms.Employee
                 GioiTinh = cboGioiTinh.SelectedItem?.ToString() ?? "Nam",
                 SoDienThoai = txtSoDienThoai.Text.Trim(),
                 Email = string.IsNullOrWhiteSpace(txtEmail.Text) ? null : txtEmail.Text.Trim(),
-                ChucVu = cboChucVu.SelectedItem?.ToString() ?? "Thu ngân",
+                ChucVu = cboChucVu.SelectedItem?.ToString() ?? "Nhân viên",
                 NgayVaoLam = dtpNgayVaoLam.Value.Date,
                 TrangThai = cboTrangThai.SelectedItem?.ToString() ?? "Đang làm việc",
                 DiaChi = string.IsNullOrWhiteSpace(txtDiaChi.Text) ? null : txtDiaChi.Text.Trim()
@@ -150,7 +150,7 @@ namespace QuanLyKhuVuiChoi.Forms.Employee
                 GioiTinh = cboGioiTinh.SelectedItem?.ToString() ?? "Nam",
                 SoDienThoai = txtSoDienThoai.Text.Trim(),
                 Email = string.IsNullOrWhiteSpace(txtEmail.Text) ? null : txtEmail.Text.Trim(),
-                ChucVu = cboChucVu.SelectedItem?.ToString() ?? "Thu ngân",
+                ChucVu = cboChucVu.SelectedItem?.ToString() ?? "Nhân viên",
                 NgayVaoLam = dtpNgayVaoLam.Value.Date,
                 TrangThai = cboTrangThai.SelectedItem?.ToString() ?? "Đang làm việc",
                 DiaChi = string.IsNullOrWhiteSpace(txtDiaChi.Text) ? null : txtDiaChi.Text.Trim()
@@ -255,7 +255,10 @@ namespace QuanLyKhuVuiChoi.Forms.Employee
                 cboGioiTinh.SelectedItem = nv.GioiTinh;
                 txtSoDienThoai.Text = nv.SoDienThoai;
                 txtEmail.Text = nv.Email ?? "";
-                cboChucVu.SelectedItem = nv.ChucVu;
+                if (nv.ChucVu == "Admin" || nv.ChucVu == "Quản lý")
+                    cboChucVu.SelectedItem = "Admin";
+                else
+                    cboChucVu.SelectedItem = "Nhân viên";
                 dtpNgayVaoLam.Value = nv.NgayVaoLam;
                 cboTrangThai.SelectedItem = nv.TrangThai;
                 txtDiaChi.Text = nv.DiaChi ?? "";

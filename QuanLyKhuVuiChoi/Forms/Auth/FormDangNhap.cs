@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Windows.Forms;
 using QuanLyKhuVuiChoi.Data;
 using QuanLyKhuVuiChoi.Services;
@@ -19,7 +19,7 @@ namespace QuanLyKhuVuiChoi.Forms.Auth
             _context = context ?? new QuanLyKhuVuiChoiDbContext();
             _authService = new AuthService(_context);
 
-            InitializeComponent();
+            InitializeComponent(); 
         }
 
         private void BtnDangNhap_Click(object? sender, EventArgs e)

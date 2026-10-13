@@ -1,4 +1,4 @@
-namespace QuanLyKhuVuiChoi.Forms.Auth
+﻿namespace QuanLyKhuVuiChoi.Forms.Auth
 {
     partial class FormQuenMatKhau
     {

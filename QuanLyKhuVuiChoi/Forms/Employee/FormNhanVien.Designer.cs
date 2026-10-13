@@ -96,7 +96,7 @@ namespace QuanLyKhuVuiChoi.Forms.Employee
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(434, 32);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "👨‍💼 QUẢN LÝ DANH SÁCH NHÂN VIÊN";
+            this.lblTitle.Text = "‍ QUẢN LÝ DANH SÁCH NHÂN VIÊN";
             // 
             // pnlInput
             // 
@@ -149,7 +149,7 @@ namespace QuanLyKhuVuiChoi.Forms.Employee
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.Size = new System.Drawing.Size(330, 32);
             this.btnLamMoi.TabIndex = 24;
-            this.btnLamMoi.Text = "🔄 Làm Mới Dữ Liệu";
+            this.btnLamMoi.Text = " Làm Mới Dữ Liệu";
             this.btnLamMoi.UseVisualStyleBackColor = false;
             this.btnLamMoi.Click += new System.EventHandler(this.BtnLamMoi_Click);
             // 
@@ -165,7 +165,7 @@ namespace QuanLyKhuVuiChoi.Forms.Employee
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(100, 34);
             this.btnXoa.TabIndex = 23;
-            this.btnXoa.Text = "🗑️ Xóa";
+            this.btnXoa.Text = " Xóa";
             this.btnXoa.UseVisualStyleBackColor = false;
             this.btnXoa.Click += new System.EventHandler(this.BtnXoa_Click);
             // 
@@ -181,7 +181,7 @@ namespace QuanLyKhuVuiChoi.Forms.Employee
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(100, 34);
             this.btnSua.TabIndex = 22;
-            this.btnSua.Text = "✏️ Sửa";
+            this.btnSua.Text = " Sửa";
             this.btnSua.UseVisualStyleBackColor = false;
             this.btnSua.Click += new System.EventHandler(this.BtnSua_Click);
             // 
@@ -197,7 +197,7 @@ namespace QuanLyKhuVuiChoi.Forms.Employee
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(100, 34);
             this.btnThem.TabIndex = 21;
-            this.btnThem.Text = "➕ Thêm";
+            this.btnThem.Text = " Thêm";
             this.btnThem.UseVisualStyleBackColor = false;
             this.btnThem.Click += new System.EventHandler(this.BtnThem_Click);
             // 
@@ -265,12 +265,8 @@ namespace QuanLyKhuVuiChoi.Forms.Employee
             this.cboChucVu.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.cboChucVu.FormattingEnabled = true;
             this.cboChucVu.Items.AddRange(new object[] {
-            "Quản lý",
-            "Thu ngân",
-            "Soát vé",
-            "Kỹ thuật",
-            "Bảo vệ",
-            "Chăm sóc khách hàng"});
+            "Admin",
+            "Nhân viên"});
             this.cboChucVu.Location = new System.Drawing.Point(135, 270);
             this.cboChucVu.Name = "cboChucVu";
             this.cboChucVu.Size = new System.Drawing.Size(210, 28);
@@ -283,7 +279,7 @@ namespace QuanLyKhuVuiChoi.Forms.Employee
             this.lblChucVu.Name = "lblChucVu";
             this.lblChucVu.Size = new System.Drawing.Size(110, 20);
             this.lblChucVu.TabIndex = 13;
-            this.lblChucVu.Text = "Chức vụ:";
+            this.lblChucVu.Text = "Quyền hạn:";
             // 
             // txtEmail
             // 
@@ -484,7 +480,7 @@ namespace QuanLyKhuVuiChoi.Forms.Employee
             this.btnLoc.Name = "btnLoc";
             this.btnLoc.Size = new System.Drawing.Size(75, 30);
             this.btnLoc.TabIndex = 4;
-            this.btnLoc.Text = "🔍 Lọc";
+            this.btnLoc.Text = " Lọc";
             this.btnLoc.UseVisualStyleBackColor = false;
             this.btnLoc.Click += new System.EventHandler(this.BtnLoc_Click);
             // 
@@ -509,12 +505,8 @@ namespace QuanLyKhuVuiChoi.Forms.Employee
             this.cboFilterChucVu.FormattingEnabled = true;
             this.cboFilterChucVu.Items.AddRange(new object[] {
             "Tất cả",
-            "Quản lý",
-            "Thu ngân",
-            "Soát vé",
-            "Kỹ thuật",
-            "Bảo vệ",
-            "Chăm sóc khách hàng"});
+            "Admin",
+            "Nhân viên"});
             this.cboFilterChucVu.Location = new System.Drawing.Point(280, 11);
             this.cboFilterChucVu.Name = "cboFilterChucVu";
             this.cboFilterChucVu.Size = new System.Drawing.Size(135, 28);

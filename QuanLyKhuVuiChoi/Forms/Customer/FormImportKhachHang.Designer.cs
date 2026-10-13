@@ -1,4 +1,4 @@
-namespace QuanLyKhuVuiChoi.Forms.Customer
+﻿namespace QuanLyKhuVuiChoi.Forms.Customer
 {
     partial class FormImportKhachHang
     {
@@ -70,7 +70,7 @@ namespace QuanLyKhuVuiChoi.Forms.Customer
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(130, 32);
             this.btnBrowse.TabIndex = 4;
-            this.btnBrowse.Text = "📂 Chọn File...";
+            this.btnBrowse.Text = " Chọn File...";
             this.btnBrowse.UseVisualStyleBackColor = false;
             this.btnBrowse.Click += new System.EventHandler(this.BtnBrowse_Click);
             // 
@@ -86,7 +86,7 @@ namespace QuanLyKhuVuiChoi.Forms.Customer
             this.btnDownloadTemplate.Name = "btnDownloadTemplate";
             this.btnDownloadTemplate.Size = new System.Drawing.Size(180, 32);
             this.btnDownloadTemplate.TabIndex = 3;
-            this.btnDownloadTemplate.Text = "📥 Tải File Mẫu Excel";
+            this.btnDownloadTemplate.Text = " Tải File Mẫu Excel";
             this.btnDownloadTemplate.UseVisualStyleBackColor = false;
             this.btnDownloadTemplate.Click += new System.EventHandler(this.BtnDownloadTemplate_Click);
             // 
@@ -118,7 +118,7 @@ namespace QuanLyKhuVuiChoi.Forms.Customer
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(564, 30);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "📥 NHẬP DỮ LIỆU KHÁCH HÀNG HÀNG LOẠT TỪ EXCEL";
+            this.lblTitle.Text = " NHẬP DỮ LIỆU KHÁCH HÀNG HÀNG LOẠT TỪ EXCEL";
             // 
             // pnlBottom
             // 
@@ -164,7 +164,7 @@ namespace QuanLyKhuVuiChoi.Forms.Customer
             this.btnConfirmImport.Name = "btnConfirmImport";
             this.btnConfirmImport.Size = new System.Drawing.Size(210, 38);
             this.btnConfirmImport.TabIndex = 1;
-            this.btnConfirmImport.Text = "✅ Xác Nhận Lưu CSDL";
+            this.btnConfirmImport.Text = " Xác Nhận Lưu CSDL";
             this.btnConfirmImport.UseVisualStyleBackColor = false;
             this.btnConfirmImport.Click += new System.EventHandler(this.BtnConfirmImport_Click);
             // 

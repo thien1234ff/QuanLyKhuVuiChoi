@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
 using QuanLyKhuVuiChoi.Data;
@@ -81,12 +81,12 @@ namespace QuanLyKhuVuiChoi.Forms.GameServiceImportExport
             };
 
             // TAB 1: TRÒ CHƠI
-            var tabGame = new TabPage("🎢 Nhập / Xuất Trò Chơi");
+            var tabGame = new TabPage(" Nhập / Xuất Trò Chơi");
             BuildGameTab(tabGame);
             tabControl.TabPages.Add(tabGame);
 
             // TAB 2: DỊCH VỤ
-            var tabService = new TabPage("🍔 Nhập / Xuất Dịch Vụ");
+            var tabService = new TabPage(" Nhập / Xuất Dịch Vụ");
             BuildServiceTab(tabService);
             tabControl.TabPages.Add(tabService);
 
@@ -103,15 +103,15 @@ namespace QuanLyKhuVuiChoi.Forms.GameServiceImportExport
             var lbl = new Label { Text = "File Excel Trò Chơi:", Location = new Point(15, 18), AutoSize = true, Font = UITheme.BoldFont };
             txtGameFile = new TextBox { Location = new Point(155, 15), Size = new Size(420, 25), ReadOnly = true, Font = UITheme.MainFont };
 
-            var btnBrowse = new Button { Text = "📂 Chọn File", Location = new Point(585, 13), Size = new Size(110, 30) };
+            var btnBrowse = new Button { Text = " Chọn File", Location = new Point(585, 13), Size = new Size(110, 30) };
             UITheme.StyleButton(btnBrowse, UITheme.Primary, Color.White);
             btnBrowse.Click += (s, e) => BrowseGameFile();
 
-            var btnExport = new Button { Text = "📤 Xuất Danh Sách Ra Excel", Location = new Point(705, 13), Size = new Size(190, 30) };
+            var btnExport = new Button { Text = " Xuất Danh Sách Ra Excel", Location = new Point(705, 13), Size = new Size(190, 30) };
             UITheme.StyleButton(btnExport, Color.FromArgb(16, 185, 129), Color.White);
             btnExport.Click += (s, e) => ExportGameToExcel();
 
-            var btnTemplate = new Button { Text = "📋 File Mẫu", Location = new Point(905, 13), Size = new Size(100, 30) };
+            var btnTemplate = new Button { Text = " File Mẫu", Location = new Point(905, 13), Size = new Size(100, 30) };
             UITheme.StyleButton(btnTemplate, Color.FromArgb(100, 116, 139), Color.White);
             btnTemplate.Click += (s, e) => DownloadGameTemplate();
 
@@ -126,7 +126,7 @@ namespace QuanLyKhuVuiChoi.Forms.GameServiceImportExport
 
             // Bottom Bar
             var pnlBottom = new Panel { Dock = DockStyle.Bottom, Height = 60, BackColor = Color.White, Padding = new Padding(15) };
-            btnConfirmGameImport = new Button { Text = "💾 Lưu Trò Chơi Vào SQL Server", Location = new Point(720, 12), Size = new Size(270, 36), Enabled = false };
+            btnConfirmGameImport = new Button { Text = " Lưu Trò Chơi Vào SQL Server", Location = new Point(720, 12), Size = new Size(270, 36), Enabled = false };
             UITheme.StyleButton(btnConfirmGameImport, UITheme.Success, Color.White);
             btnConfirmGameImport.Click += (s, e) => SaveGameImport();
             pnlBottom.Controls.Add(btnConfirmGameImport);
@@ -155,15 +155,15 @@ namespace QuanLyKhuVuiChoi.Forms.GameServiceImportExport
             var lbl = new Label { Text = "File Excel Dịch Vụ:", Location = new Point(15, 18), AutoSize = true, Font = UITheme.BoldFont };
             txtServiceFile = new TextBox { Location = new Point(155, 15), Size = new Size(420, 25), ReadOnly = true, Font = UITheme.MainFont };
 
-            var btnBrowse = new Button { Text = "📂 Chọn File", Location = new Point(585, 13), Size = new Size(110, 30) };
+            var btnBrowse = new Button { Text = " Chọn File", Location = new Point(585, 13), Size = new Size(110, 30) };
             UITheme.StyleButton(btnBrowse, UITheme.Primary, Color.White);
             btnBrowse.Click += (s, e) => BrowseServiceFile();
 
-            var btnExport = new Button { Text = "📤 Xuất Danh Sách Ra Excel", Location = new Point(705, 13), Size = new Size(190, 30) };
+            var btnExport = new Button { Text = " Xuất Danh Sách Ra Excel", Location = new Point(705, 13), Size = new Size(190, 30) };
             UITheme.StyleButton(btnExport, Color.FromArgb(16, 185, 129), Color.White);
             btnExport.Click += (s, e) => ExportServiceToExcel();
 
-            var btnTemplate = new Button { Text = "📋 File Mẫu", Location = new Point(905, 13), Size = new Size(100, 30) };
+            var btnTemplate = new Button { Text = " File Mẫu", Location = new Point(905, 13), Size = new Size(100, 30) };
             UITheme.StyleButton(btnTemplate, Color.FromArgb(100, 116, 139), Color.White);
             btnTemplate.Click += (s, e) => DownloadServiceTemplate();
 
@@ -178,7 +178,7 @@ namespace QuanLyKhuVuiChoi.Forms.GameServiceImportExport
 
             // Bottom Bar
             var pnlBottom = new Panel { Dock = DockStyle.Bottom, Height = 60, BackColor = Color.White, Padding = new Padding(15) };
-            btnConfirmServiceImport = new Button { Text = "💾 Lưu Dịch Vụ Vào SQL Server", Location = new Point(720, 12), Size = new Size(270, 36), Enabled = false };
+            btnConfirmServiceImport = new Button { Text = " Lưu Dịch Vụ Vào SQL Server", Location = new Point(720, 12), Size = new Size(270, 36), Enabled = false };
             UITheme.StyleButton(btnConfirmServiceImport, UITheme.Success, Color.White);
             btnConfirmServiceImport.Click += (s, e) => SaveServiceImport();
             pnlBottom.Controls.Add(btnConfirmServiceImport);
