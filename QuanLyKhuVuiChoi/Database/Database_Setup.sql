@@ -1,4 +1,4 @@
-﻿-- ==============================================================================
+-- ==============================================================================
 -- HỆ THỐNG QUẢN LÝ KHU VUI CHƠI GIẢI TRÍ
 -- DATABASE SCRIPT: QuanLyKhuVuiChoi
 -- CÔNG NGHỆ: SQL Server 2019/2022 / LocalDB
@@ -233,16 +233,16 @@ GO
 
 -- 6. SEED VÉ (10 loại vé)
 INSERT INTO dbo.Ve (MaVe, TenVe, LoaiVe, GiaVe, ThoiHan, MoTa, TrangThai) VALUES
-('VE001', N'Vé vào cổng tiêu chuẩn', N'Vé ngày', 100000, N'Trong ngày', N'Vào cổng tham quan và chơi các trò chơi miễn phí cơ bản', N'Đang áp dụng'),
-('VE002', N'Vé trọn gói người lớn (All-in-one)', N'Vé người lớn', 250000, N'Trong ngày', N'Chơi không giới hạn tất cả các trò chơi khô và nước', N'Đang áp dụng'),
-('VE003', N'Vé trọn gói trẻ em (Cao < 1m3)', N'Vé trẻ em', 150000, N'Trong ngày', N'Áp dụng cho trẻ em, miễn phí toàn bộ khu Kidzone và nước', N'Đang áp dụng'),
-('VE004', N'Vé công viên nước Paradise', N'Vé ngày', 120000, N'Trong ngày', N'Vé tham gia toàn bộ cụm trò chơi công viên nước', N'Đang áp dụng'),
-('VE005', N'Vé combo Gia đình (2 Lớn + 1 Bé)', N'Vé gia đình', 550000, N'Trong ngày', N'Gói tiết kiệm cho gia đình 3 người trọn gói tất cả trò chơi', N'Đang áp dụng'),
-('VE006', N'Vé combo Gia đình VIP (2 Lớn + 2 Bé)', N'Vé gia đình', 700000, N'Trong ngày', N'Trọn gói trò chơi + tặng 4 voucher nước uống 20k', N'Đang áp dụng'),
-('VE007', N'Vé VIP FastPass ưu tiên', N'Vé VIP', 450000, N'Trong ngày', N'Trọn gói + lối đi ưu tiên không cần xếp hàng chờ đợi', N'Đang áp dụng'),
-('VE008', N'Vé dạ hội vui chơi sau 17h00', N'Vé ngày', 120000, N'Buổi tối', N'Áp dụng sau 17h00 thưởng thức biểu diễn ánh sáng và trò chơi đêm', N'Đang áp dụng'),
-('VE009', N'Vé học sinh - sinh viên ưu đãi', N'Vé người lớn', 180000, N'Trong ngày', N'Yêu cầu xuất trình thẻ học sinh hoặc sinh viên', N'Đang áp dụng'),
-('VE010', N'Vé thẻ tháng Member Platinum', N'Vé VIP', 1200000, N'30 ngày', N'Vào cổng và chơi không giới hạn tất cả các ngày trong tháng', N'Đang áp dụng');
+('VE001', N'Vé vào cổng tiêu chuẩn', N'Vé ngày', 100000, N'Trong ngày', N'Vào cổng tham quan tự do + Đu quay ngựa gỗ + Xem biểu diễn nghệ thuật đường phố', N'Đang áp dụng'),
+('VE002', N'Vé trọn gói người lớn (All-in-one)', N'Vé người lớn', 250000, N'Trong ngày', N'Trọn gói KHÔNG GIỚI HẠN toàn bộ trò chơi cảm giác mạnh & công viên nước Paradise', N'Đang áp dụng'),
+('VE003', N'Vé trọn gói trẻ em (Cao < 1m3)', N'Vé trẻ em', 150000, N'Trong ngày', N'Dành cho bé < 1m3: Chơi trọn gói khu Kidzone liên hoàn, nhà bóng & công viên nước trẻ em', N'Đang áp dụng'),
+('VE004', N'Vé công viên nước Paradise', N'Vé ngày', 120000, N'Trong ngày', N'Trọn gói cụm công viên nước Paradise: Hồ tạo sóng, máng trượt xoắn đa làn & sông lười', N'Đang áp dụng'),
+('VE005', N'Vé combo Gia đình (2 Lớn + 1 Bé)', N'Vé gia đình', 550000, N'Trong ngày', N'Gói tiết kiệm 3 người (2 Lớn + 1 Bé): Trọn gói trò chơi khô + nước, tặng voucher 10% ăn uống', N'Đang áp dụng'),
+('VE006', N'Vé combo Gia đình VIP (2 Lớn + 2 Bé)', N'Vé gia đình', 700000, N'Trong ngày', N'Gói VIP 4 người (2 Lớn + 2 Bé): Trọn gói + Tặng 4 voucher nước + 1 bắp rang + Lối đi ưu tiên', N'Đang áp dụng'),
+('VE007', N'Vé VIP FastPass ưu tiên', N'Vé VIP', 450000, N'Trong ngày', N'Đặc quyền FastPass không xếp hàng + VIP Lounge máy lạnh + Nước tự chọn + Tủ đồ VIP có sạc', N'Đang áp dụng'),
+('VE008', N'Vé dạ hội vui chơi sau 17h00', N'Vé ngày', 120000, N'Buổi tối', N'Vào cổng sau 17h00: Trình diễn nhạc nước 3D mapping, ánh sáng laser & ngắm cảnh đêm Wonder Wheel', N'Đang áp dụng'),
+('VE009', N'Vé học sinh - sinh viên ưu đãi', N'Vé người lớn', 180000, N'Trong ngày', N'Ưu đãi HSSV (xuất trình thẻ): Trọn gói trò chơi khô + công viên nước, giảm 28% giá vé', N'Đang áp dụng'),
+('VE010', N'Vé thẻ tháng Member Platinum', N'Vé VIP', 1200000, N'30 ngày', N'Thẻ tháng Platinum 30 ngày: Vào cổng không giới hạn mọi ngày + Giảm 10% dịch vụ & ăn uống', N'Đang áp dụng');
 GO
 
 -- 7. SEED HÓA ĐƠN & CHI TIẾT HÓA ĐƠN (30 hóa đơn thực tế có quan hệ)

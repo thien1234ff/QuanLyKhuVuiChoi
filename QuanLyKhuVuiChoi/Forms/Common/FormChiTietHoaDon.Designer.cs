@@ -85,7 +85,7 @@
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(306, 30);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = " HÓA ĐƠN THANH TOÁN";
+            this.lblTitle.Text = "HÓA ĐƠN THANH TOÁN";
             // 
             // pnlBottom
             // 

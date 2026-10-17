@@ -92,7 +92,7 @@
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(437, 32);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = " QUẢN LÝ BẢNG GIÁ & LOẠI VÉ VÀO";
+            this.lblTitle.Text = "QUẢN LÝ BẢNG GIÁ & LOẠI VÉ VÀO";
             // 
             // pnlInput
             // 
@@ -139,7 +139,7 @@
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.Size = new System.Drawing.Size(330, 32);
             this.btnLamMoi.TabIndex = 18;
-            this.btnLamMoi.Text = " Làm Mới Dữ Liệu";
+            this.btnLamMoi.Text = "Làm Mới Dữ Liệu";
             this.btnLamMoi.UseVisualStyleBackColor = false;
             this.btnLamMoi.Click += new System.EventHandler(this.BtnLamMoi_Click);
             // 
@@ -155,7 +155,7 @@
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(100, 34);
             this.btnXoa.TabIndex = 17;
-            this.btnXoa.Text = " Xóa";
+            this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = false;
             this.btnXoa.Click += new System.EventHandler(this.BtnXoa_Click);
             // 
@@ -171,7 +171,7 @@
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(100, 34);
             this.btnSua.TabIndex = 16;
-            this.btnSua.Text = " Sửa";
+            this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = false;
             this.btnSua.Click += new System.EventHandler(this.BtnSua_Click);
             // 
@@ -187,7 +187,7 @@
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(100, 34);
             this.btnThem.TabIndex = 15;
-            this.btnThem.Text = " Thêm";
+            this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = false;
             this.btnThem.Click += new System.EventHandler(this.BtnThem_Click);
             // 

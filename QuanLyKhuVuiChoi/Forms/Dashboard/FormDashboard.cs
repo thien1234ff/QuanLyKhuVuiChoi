@@ -270,5 +270,11 @@ namespace QuanLyKhuVuiChoi.Forms.Dashboard
                 y += 55;
             }
         }
+
+        private void BtnExportSummary_Click(object? sender, EventArgs e)
+        {
+            using var dlg = new FormXuatTongKet(_reportService);
+            dlg.ShowDialog(this);
+        }
     }
 }

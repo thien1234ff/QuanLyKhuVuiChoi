@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using QuanLyKhuVuiChoi.Data;
@@ -211,6 +211,8 @@ namespace QuanLyKhuVuiChoi.Forms.GameServiceImportExport
 
                     dgvGamePreview.DataSource = null;
                     dgvGamePreview.DataSource = currentGameResult.ValidItems;
+                    if (dgvGamePreview.Columns["GiaVe"] != null)
+                        dgvGamePreview.Columns["GiaVe"].Visible = false;
 
                     foreach (var err in currentGameResult.Errors) lstGameErrors.Items.Add(err);
 
@@ -251,8 +253,8 @@ namespace QuanLyKhuVuiChoi.Forms.GameServiceImportExport
                     _excelService.CreateTemplateFile(
                         sfd.FileName,
                         "TroChoi",
-                        new[] { "MaTroChoi", "TenTroChoi", "LoaiTroChoi", "GiaVe", "DoTuoiToiThieu", "SucChua", "TrangThai", "MoTa" },
-                        new[] { "TC101", "Tàu Lượn Mẫu", "Cảm giác mạnh", "70000", "12", "24", "Đang hoạt động", "Mô tả mẫu" }
+                        new[] { "MaTroChoi", "TenTroChoi", "LoaiTroChoi", "DoTuoiToiThieu", "SucChua", "TrangThai", "MoTa" },
+                        new[] { "TC101", "Tàu Lượn Mẫu", "Cảm giác mạnh", "12", "24", "Đang hoạt động", "Mô tả mẫu" }
                     );
                     MessageBox.Show("Đã tạo file mẫu Excel Trò Chơi thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }

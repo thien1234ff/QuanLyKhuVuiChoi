@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 
 namespace QuanLyKhuVuiChoi.Services
 {
@@ -43,8 +43,8 @@ namespace QuanLyKhuVuiChoi.Services
                 excelService.CreateTemplateFile(
                     tcFile,
                     "TroChoi",
-                    new[] { "MaTroChoi", "TenTroChoi", "LoaiTroChoi", "GiaVe", "DoTuoiToiThieu", "SucChua", "TrangThai", "MoTa" },
-                    new[] { "TC999", "Trò chơi siêu tốc Mẫu", "Cảm giác mạnh", "75000", "12", "20", "Đang hoạt động", "Mô tả trò chơi mẫu" }
+                    new[] { "MaTroChoi", "TenTroChoi", "LoaiTroChoi", "DoTuoiToiThieu", "SucChua", "TrangThai", "MoTa" },
+                    new[] { "TC999", "Trò chơi siêu tốc Mẫu", "Cảm giác mạnh", "12", "20", "Đang hoạt động", "Mô tả trò chơi mẫu" }
                 );
             }
 

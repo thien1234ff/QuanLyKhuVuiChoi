@@ -35,6 +35,8 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
         private List<Ve> _availableTickets = new List<Ve>();
         private List<DichVu> _availableServices = new List<DichVu>();
         private string _activeCategory = "TatCa";
+        private string _searchKeyword = string.Empty;
+        private readonly ToolTip _toolTip = new ToolTip();
 
         public FormBanVe() : this(new QuanLyKhuVuiChoiDbContext(), new ExcelService())
         {
@@ -50,6 +52,11 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             _parkService = new ParkServiceService(_context, _excelService);
 
             InitializeComponent();
+
+            _toolTip.AutoPopDelay = 15000;
+            _toolTip.InitialDelay = 350;
+            _toolTip.ReshowDelay = 100;
+            _toolTip.ShowAlways = true;
 
             if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return;
 
@@ -117,37 +124,83 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             RenderTicketCards();
         }
 
+        private void TxtSearchItem_TextChanged(object? sender, EventArgs e)
+        {
+            _searchKeyword = txtSearchItem.Text.Trim();
+            RenderTicketCards();
+        }
+
         private void RenderTicketCards()
         {
             pnlTicketCards.Controls.Clear();
+            _toolTip.RemoveAll();
+
+            int cardCount = 0;
 
             // 1. Tickets
             if (_activeCategory == "TatCa" || _activeCategory == "Ve")
             {
-                foreach (var ticket in _availableTickets)
+                var query = _availableTickets.AsEnumerable();
+                if (!string.IsNullOrWhiteSpace(_searchKeyword))
                 {
-                    pnlTicketCards.Controls.Add(CreateTicketCard(ticket.MaVe, ticket.TenVe, ticket.GiaVe, ticket.MoTa ?? "Vé tham quan tiêu chuẩn", "Ve", ""));
+                    query = query.Where(t => t.TenVe.Contains(_searchKeyword, StringComparison.OrdinalIgnoreCase) ||
+                                             t.MaVe.Contains(_searchKeyword, StringComparison.OrdinalIgnoreCase) ||
+                                             t.LoaiVe.Contains(_searchKeyword, StringComparison.OrdinalIgnoreCase));
+                }
+
+                foreach (var ticket in query)
+                {
+                    pnlTicketCards.Controls.Add(CreateTicketCard(ticket));
+                    cardCount++;
                 }
             }
 
             // 2. Services
             if (_activeCategory == "TatCa" || _activeCategory == "DichVu")
             {
-                foreach (var s in _availableServices)
+                var query = _availableServices.AsEnumerable();
+                if (!string.IsNullOrWhiteSpace(_searchKeyword))
                 {
-                    pnlTicketCards.Controls.Add(CreateTicketCard(s.MaDichVu, s.TenDichVu, s.DonGia, $"Tồn kho: {s.SoLuongTon}", "DichVu", ""));
+                    query = query.Where(s => s.TenDichVu.Contains(_searchKeyword, StringComparison.OrdinalIgnoreCase) ||
+                                             s.MaDichVu.Contains(_searchKeyword, StringComparison.OrdinalIgnoreCase) ||
+                                             s.LoaiDichVu.Contains(_searchKeyword, StringComparison.OrdinalIgnoreCase));
                 }
+
+                foreach (var s in query)
+                {
+                    pnlTicketCards.Controls.Add(CreateServiceCard(s));
+                    cardCount++;
+                }
+            }
+
+            if (cardCount == 0)
+            {
+                var lblEmpty = new Label
+                {
+                    Text = string.IsNullOrWhiteSpace(_searchKeyword)
+                        ? "Không có mặt hàng nào trong danh mục này."
+                        : $"Không tìm thấy vé hoặc dịch vụ nào khớp với từ khóa '{_searchKeyword}'.",
+                    Font = new Font("Segoe UI", 9.5F, FontStyle.Italic),
+                    ForeColor = Color.FromArgb(100, 116, 139),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    Size = new Size(500, 120),
+                    Margin = new Padding(30, 40, 10, 0)
+                };
+                pnlTicketCards.Controls.Add(lblEmpty);
             }
         }
 
-        private Panel CreateTicketCard(string id, string name, decimal price, string desc, string type, string icon)
+        private Panel CreateTicketCard(Ve ticket)
         {
+            var detail = TicketDetailCatalog.GetTicketDetail(ticket);
+
             var card = new Panel
             {
-                Size = new Size(225, 140),
+                Size = new Size(235, 142),
                 BackColor = Color.White,
                 Margin = new Padding(6),
-                Padding = new Padding(12)
+                Padding = new Padding(12),
+                Cursor = Cursors.Default
             };
             card.Paint += (s, e) =>
             {
@@ -155,65 +208,125 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
                 e.Graphics.DrawRectangle(pen, 0, 0, card.Width - 1, card.Height - 1);
             };
 
-            // Name
+            // Badge Category (LoaiVe)
+            Color catBg = Color.FromArgb(241, 245, 249);
+            Color catFg = Color.FromArgb(71, 85, 105);
+            if (ticket.LoaiVe.Contains("VIP", StringComparison.OrdinalIgnoreCase))
+            {
+                catBg = Color.FromArgb(254, 243, 199);
+                catFg = Color.FromArgb(180, 83, 9);
+            }
+            else if (ticket.LoaiVe.Contains("Trẻ em", StringComparison.OrdinalIgnoreCase))
+            {
+                catBg = Color.FromArgb(224, 242, 254);
+                catFg = Color.FromArgb(3, 105, 161);
+            }
+            else if (ticket.LoaiVe.Contains("Gia đình", StringComparison.OrdinalIgnoreCase))
+            {
+                catBg = Color.FromArgb(236, 253, 245);
+                catFg = Color.FromArgb(4, 120, 87);
+            }
+            else if (ticket.LoaiVe.Contains("Người lớn", StringComparison.OrdinalIgnoreCase))
+            {
+                catBg = Color.FromArgb(238, 242, 255);
+                catFg = Color.FromArgb(79, 70, 229);
+            }
+
+            var lblLoai = new Label
+            {
+                Text = ticket.LoaiVe,
+                Font = new Font("Segoe UI", 8F, FontStyle.Bold),
+                BackColor = catBg,
+                ForeColor = catFg,
+                Padding = new Padding(6, 2, 6, 2),
+                AutoSize = true,
+                Location = new Point(12, 10)
+            };
+
+            var lblThoiHan = new Label
+            {
+                Text = ticket.ThoiHan ?? "Trong ngày",
+                Font = new Font("Segoe UI", 8F, FontStyle.Regular),
+                BackColor = Color.FromArgb(248, 250, 252),
+                ForeColor = Color.FromArgb(100, 116, 139),
+                Padding = new Padding(6, 2, 6, 2),
+                AutoSize = true
+            };
+            lblThoiHan.Location = new Point(card.Width - 12 - lblThoiHan.PreferredWidth, 10);
+
+            // Ticket Name
             var lblName = new Label
             {
-                Text = name,
-                Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
+                Text = ticket.TenVe,
+                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(15, 23, 42),
-                Location = new Point(14, 10),
-                Size = new Size(195, 22),
+                Location = new Point(12, 38),
+                Size = new Size(211, 24),
                 AutoEllipsis = true
             };
 
-            // Price
+            // Ticket Price
             var lblPrice = new Label
             {
-                Text = price.ToString("N0") + "đ",
-                Font = new Font("Segoe UI", 10.5F, FontStyle.Bold),
+                Text = ticket.GiaVe.ToString("N0") + " đ",
+                Font = new Font("Segoe UI", 11F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(79, 70, 229),
-                Location = new Point(14, 32),
+                Location = new Point(12, 64),
                 AutoSize = true
             };
 
-            // Description
-            var lblDesc = new Label
-            {
-                Text = desc,
-                Font = new Font("Segoe UI", 8F),
-                ForeColor = Color.FromArgb(100, 116, 139),
-                Location = new Point(14, 58),
-                Size = new Size(195, 28),
-                AutoEllipsis = true
-            };
-
-            // Quantity Stepper: [-]  0  [+]
-            var pnlStepper = new Panel
-            {
-                Location = new Point(14, 94),
-                Size = new Size(195, 32),
-                BackColor = Color.Transparent
-            };
-
-            var existingItem = _cartItems.FirstOrDefault(c => c.LoaiHang == type && c.MaHang == id);
+            // Quantity & Cart
+            var existingItem = _cartItems.FirstOrDefault(c => c.LoaiHang == "Ve" && c.MaHang == ticket.MaVe);
             int currentQty = existingItem?.SoLuong ?? 0;
 
             var lblQty = new Label
             {
                 Text = currentQty.ToString(),
-                Font = new Font("Segoe UI", 9F, FontStyle.Bold),
+                Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(15, 23, 42),
-                Location = new Point(80, 5),
-                Size = new Size(35, 20),
+                Location = new Point(30, 6),
+                Size = new Size(34, 20),
                 TextAlign = ContentAlignment.MiddleCenter
+            };
+
+            // Details Button "ℹ Chi tiết"
+            var btnDetails = new Button
+            {
+                Text = "ℹ Chi tiết",
+                Font = new Font("Segoe UI", 8.5F, FontStyle.Bold),
+                Size = new Size(88, 32),
+                Location = new Point(12, 96),
+                FlatStyle = FlatStyle.Flat,
+                BackColor = Color.FromArgb(238, 242, 255),
+                ForeColor = Color.FromArgb(79, 70, 229),
+                Cursor = Cursors.Hand
+            };
+            btnDetails.FlatAppearance.BorderSize = 0;
+            btnDetails.Click += (s, e) =>
+            {
+                using var dlg = new FormChiTietQuyenLoiVe(detail);
+                if (dlg.ShowDialog(this) == DialogResult.OK && dlg.RequestedAddToCart)
+                {
+                    AddToCart(ticket.MaVe, ticket.TenVe, "Ve", ticket.GiaVe, 1);
+                    int q = int.Parse(lblQty.Text) + 1;
+                    lblQty.Text = q.ToString();
+                }
+            };
+
+            // Stepper: [-]  0  [+]
+            var pnlStepper = new Panel
+            {
+                Location = new Point(126, 96),
+                Size = new Size(96, 32),
+                BackColor = Color.Transparent
             };
 
             var btnMinus = new Button
             {
                 Text = "−",
-                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
-                Size = new Size(26, 26),
-                Location = new Point(52, 2),
+                Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
+                Size = new Size(28, 28),
+                Location = new Point(0, 2),
                 FlatStyle = FlatStyle.Flat,
                 BackColor = Color.FromArgb(241, 245, 249),
                 ForeColor = Color.FromArgb(15, 23, 42),
@@ -224,9 +337,9 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             var btnPlus = new Button
             {
                 Text = "+",
-                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
-                Size = new Size(26, 26),
-                Location = new Point(117, 2),
+                Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
+                Size = new Size(28, 28),
+                Location = new Point(66, 2),
                 FlatStyle = FlatStyle.Flat,
                 BackColor = Color.FromArgb(79, 70, 229),
                 ForeColor = Color.White,
@@ -238,7 +351,7 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             {
                 int q = int.Parse(lblQty.Text) + 1;
                 lblQty.Text = q.ToString();
-                AddToCart(id, name, type, price, 1);
+                AddToCart(ticket.MaVe, ticket.TenVe, "Ve", ticket.GiaVe, 1);
             };
 
             btnMinus.Click += (s, e) =>
@@ -248,7 +361,7 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
                 {
                     q--;
                     lblQty.Text = q.ToString();
-                    AddToCart(id, name, type, price, -1);
+                    AddToCart(ticket.MaVe, ticket.TenVe, "Ve", ticket.GiaVe, -1);
                 }
             };
 
@@ -256,9 +369,199 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             pnlStepper.Controls.Add(lblQty);
             pnlStepper.Controls.Add(btnPlus);
 
+            // Rich ToolTip on hover
+            string tip = TicketDetailCatalog.BuildTicketToolTipText(detail);
+            _toolTip.SetToolTip(card, tip);
+            _toolTip.SetToolTip(lblName, tip);
+            _toolTip.SetToolTip(lblPrice, tip);
+            _toolTip.SetToolTip(btnDetails, "Bấm để xem danh sách trò chơi, tiện ích và điều kiện chi tiết của vé này");
+
+            card.Controls.Add(lblLoai);
+            card.Controls.Add(lblThoiHan);
             card.Controls.Add(lblName);
             card.Controls.Add(lblPrice);
-            card.Controls.Add(lblDesc);
+            card.Controls.Add(btnDetails);
+            card.Controls.Add(pnlStepper);
+
+            return card;
+        }
+
+        private Panel CreateServiceCard(DichVu s)
+        {
+            var card = new Panel
+            {
+                Size = new Size(235, 142),
+                BackColor = Color.White,
+                Margin = new Padding(6),
+                Padding = new Padding(12),
+                Cursor = Cursors.Default
+            };
+            card.Paint += (sender, e) =>
+            {
+                using var pen = new Pen(Color.FromArgb(226, 232, 240), 1);
+                e.Graphics.DrawRectangle(pen, 0, 0, card.Width - 1, card.Height - 1);
+            };
+
+            // Badge Category
+            var lblLoai = new Label
+            {
+                Text = s.LoaiDichVu ?? "Dịch vụ",
+                Font = new Font("Segoe UI", 8F, FontStyle.Bold),
+                BackColor = Color.FromArgb(243, 232, 255),
+                ForeColor = Color.FromArgb(126, 34, 206),
+                Padding = new Padding(6, 2, 6, 2),
+                AutoSize = true,
+                Location = new Point(12, 10)
+            };
+
+            // Badge Stock
+            Color stockBg = s.SoLuongTon > 10 ? Color.FromArgb(236, 253, 245) : Color.FromArgb(254, 242, 242);
+            Color stockFg = s.SoLuongTon > 10 ? Color.FromArgb(4, 120, 87) : Color.FromArgb(220, 38, 38);
+            var lblStock = new Label
+            {
+                Text = $"Còn: {s.SoLuongTon}",
+                Font = new Font("Segoe UI", 8F, FontStyle.Bold),
+                BackColor = stockBg,
+                ForeColor = stockFg,
+                Padding = new Padding(6, 2, 6, 2),
+                AutoSize = true
+            };
+            lblStock.Location = new Point(card.Width - 12 - lblStock.PreferredWidth, 10);
+
+            // Name
+            var lblName = new Label
+            {
+                Text = s.TenDichVu,
+                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
+                ForeColor = Color.FromArgb(15, 23, 42),
+                Location = new Point(12, 38),
+                Size = new Size(211, 24),
+                AutoEllipsis = true
+            };
+
+            // Price
+            var lblPrice = new Label
+            {
+                Text = s.DonGia.ToString("N0") + " đ",
+                Font = new Font("Segoe UI", 11F, FontStyle.Bold),
+                ForeColor = Color.FromArgb(16, 185, 129),
+                Location = new Point(12, 64),
+                AutoSize = true
+            };
+
+            // Stepper
+            var existingItem = _cartItems.FirstOrDefault(c => c.LoaiHang == "DichVu" && c.MaHang == s.MaDichVu);
+            int currentQty = existingItem?.SoLuong ?? 0;
+
+            var lblQty = new Label
+            {
+                Text = currentQty.ToString(),
+                Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
+                ForeColor = Color.FromArgb(15, 23, 42),
+                Location = new Point(30, 6),
+                Size = new Size(34, 20),
+                TextAlign = ContentAlignment.MiddleCenter
+            };
+
+            // Details info button
+            var btnDetails = new Button
+            {
+                Text = "ℹ Chi tiết",
+                Font = new Font("Segoe UI", 8.5F, FontStyle.Bold),
+                Size = new Size(88, 32),
+                Location = new Point(12, 96),
+                FlatStyle = FlatStyle.Flat,
+                BackColor = Color.FromArgb(243, 232, 255),
+                ForeColor = Color.FromArgb(126, 34, 206),
+                Cursor = Cursors.Hand
+            };
+            btnDetails.FlatAppearance.BorderSize = 0;
+            btnDetails.Click += (sender, e) =>
+            {
+                MessageBox.Show(
+                    $"TÊN DỊCH VỤ: {s.TenDichVu}\n" +
+                    $"Mã dịch vụ: {s.MaDichVu}\n" +
+                    $"Phân loại: {s.LoaiDichVu}\n" +
+                    $"Đơn giá: {s.DonGia:N0} VNĐ\n" +
+                    $"Tồn kho hiện có: {s.SoLuongTon}\n" +
+                    $"Trạng thái: {s.TrangThai}\n\n" +
+                    $"Mô tả:\n{s.MoTa ?? "Dịch vụ phục vụ tại quầy khu vui chơi"}",
+                    "Chi Tiết Dịch Vụ / Hàng Hóa",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            };
+
+            var pnlStepper = new Panel
+            {
+                Location = new Point(126, 96),
+                Size = new Size(96, 32),
+                BackColor = Color.Transparent
+            };
+
+            var btnMinus = new Button
+            {
+                Text = "−",
+                Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
+                Size = new Size(28, 28),
+                Location = new Point(0, 2),
+                FlatStyle = FlatStyle.Flat,
+                BackColor = Color.FromArgb(241, 245, 249),
+                ForeColor = Color.FromArgb(15, 23, 42),
+                Cursor = Cursors.Hand
+            };
+            btnMinus.FlatAppearance.BorderSize = 0;
+
+            var btnPlus = new Button
+            {
+                Text = "+",
+                Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
+                Size = new Size(28, 28),
+                Location = new Point(66, 2),
+                FlatStyle = FlatStyle.Flat,
+                BackColor = Color.FromArgb(16, 185, 129),
+                ForeColor = Color.White,
+                Cursor = Cursors.Hand
+            };
+            btnPlus.FlatAppearance.BorderSize = 0;
+
+            btnPlus.Click += (sender, e) =>
+            {
+                int q = int.Parse(lblQty.Text);
+                if (q >= s.SoLuongTon)
+                {
+                    MessageBox.Show($"Mặt hàng này chỉ còn {s.SoLuongTon} sản phẩm trong kho!", "Cảnh Báo Tồn Kho", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                q++;
+                lblQty.Text = q.ToString();
+                AddToCart(s.MaDichVu, s.TenDichVu, "DichVu", s.DonGia, 1);
+            };
+
+            btnMinus.Click += (sender, e) =>
+            {
+                int q = int.Parse(lblQty.Text);
+                if (q > 0)
+                {
+                    q--;
+                    lblQty.Text = q.ToString();
+                    AddToCart(s.MaDichVu, s.TenDichVu, "DichVu", s.DonGia, -1);
+                }
+            };
+
+            pnlStepper.Controls.Add(btnMinus);
+            pnlStepper.Controls.Add(lblQty);
+            pnlStepper.Controls.Add(btnPlus);
+
+            string tip = $"Dịch vụ: {s.TenDichVu}\nĐơn giá: {s.DonGia:N0} đ\nLoại: {s.LoaiDichVu}\nTồn kho: {s.SoLuongTon}\n{s.MoTa}";
+            _toolTip.SetToolTip(card, tip);
+            _toolTip.SetToolTip(lblName, tip);
+            _toolTip.SetToolTip(btnDetails, "Bấm để xem chi tiết thông tin dịch vụ này");
+
+            card.Controls.Add(lblLoai);
+            card.Controls.Add(lblStock);
+            card.Controls.Add(lblName);
+            card.Controls.Add(lblPrice);
+            card.Controls.Add(btnDetails);
             card.Controls.Add(pnlStepper);
 
             return card;

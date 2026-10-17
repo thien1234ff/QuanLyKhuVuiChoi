@@ -18,6 +18,7 @@ namespace QuanLyKhuVuiChoi.Forms.Dashboard
         private void InitializeComponent()
         {
             this.pnlTopHeader = new System.Windows.Forms.Panel();
+            this.btnExportSummary = new System.Windows.Forms.Button();
             this.lblHeaderSubtitle = new System.Windows.Forms.Label();
             this.lblHeaderTitle = new System.Windows.Forms.Label();
             this.pnlKpiContainer = new System.Windows.Forms.TableLayoutPanel();
@@ -68,6 +69,7 @@ namespace QuanLyKhuVuiChoi.Forms.Dashboard
             // 
             this.pnlTopHeader.BackColor = System.Drawing.Color.White;
             this.pnlTopHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlTopHeader.Controls.Add(this.btnExportSummary);
             this.pnlTopHeader.Controls.Add(this.lblHeaderSubtitle);
             this.pnlTopHeader.Controls.Add(this.lblHeaderTitle);
             this.pnlTopHeader.Dock = System.Windows.Forms.DockStyle.Top;
@@ -76,6 +78,23 @@ namespace QuanLyKhuVuiChoi.Forms.Dashboard
             this.pnlTopHeader.Padding = new System.Windows.Forms.Padding(20, 12, 20, 10);
             this.pnlTopHeader.Size = new System.Drawing.Size(1162, 70);
             this.pnlTopHeader.TabIndex = 0;
+            // 
+            // btnExportSummary
+            // 
+            this.btnExportSummary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportSummary.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(185)))), ((int)(((byte)(129)))));
+            this.btnExportSummary.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExportSummary.FlatAppearance.BorderSize = 0;
+            this.btnExportSummary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportSummary.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            this.btnExportSummary.ForeColor = System.Drawing.Color.White;
+            this.btnExportSummary.Location = new System.Drawing.Point(925, 16);
+            this.btnExportSummary.Name = "btnExportSummary";
+            this.btnExportSummary.Size = new System.Drawing.Size(215, 38);
+            this.btnExportSummary.TabIndex = 2;
+            this.btnExportSummary.Text = "📊 Xuất Báo Cáo Tổng Kết";
+            this.btnExportSummary.UseVisualStyleBackColor = false;
+            this.btnExportSummary.Click += new System.EventHandler(this.BtnExportSummary_Click);
             // 
             // lblHeaderSubtitle
             // 
@@ -139,9 +158,9 @@ namespace QuanLyKhuVuiChoi.Forms.Dashboard
             this.lblKpi1Trend.AutoSize = true;
             this.lblKpi1Trend.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lblKpi1Trend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(185)))), ((int)(((byte)(129)))));
-            this.lblKpi1Trend.Location = new System.Drawing.Point(14, 70);
+            this.lblKpi1Trend.Location = new System.Drawing.Point(14, 69);
             this.lblKpi1Trend.Name = "lblKpi1Trend";
-            this.lblKpi1Trend.Size = new System.Drawing.Size(149, 19);
+            this.lblKpi1Trend.Size = new System.Drawing.Size(149, 18);
             this.lblKpi1Trend.TabIndex = 3;
             this.lblKpi1Trend.Text = "+12% so với hôm qua";
             // 
@@ -150,9 +169,9 @@ namespace QuanLyKhuVuiChoi.Forms.Dashboard
             this.lblTotalCustomer.AutoSize = true;
             this.lblTotalCustomer.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
             this.lblTotalCustomer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(23)))), ((int)(((byte)(42)))));
-            this.lblTotalCustomer.Location = new System.Drawing.Point(10, 28);
+            this.lblTotalCustomer.Location = new System.Drawing.Point(10, 27);
             this.lblTotalCustomer.Name = "lblTotalCustomer";
-            this.lblTotalCustomer.Size = new System.Drawing.Size(35, 41);
+            this.lblTotalCustomer.Size = new System.Drawing.Size(35, 38);
             this.lblTotalCustomer.TabIndex = 2;
             this.lblTotalCustomer.Text = "0";
             // 
@@ -161,9 +180,9 @@ namespace QuanLyKhuVuiChoi.Forms.Dashboard
             this.lblKpi1Title.AutoSize = true;
             this.lblKpi1Title.Font = new System.Drawing.Font("Segoe UI", 8.5F);
             this.lblKpi1Title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lblKpi1Title.Location = new System.Drawing.Point(14, 10);
+            this.lblKpi1Title.Location = new System.Drawing.Point(14, 8);
             this.lblKpi1Title.Name = "lblKpi1Title";
-            this.lblKpi1Title.Size = new System.Drawing.Size(145, 20);
+            this.lblKpi1Title.Size = new System.Drawing.Size(145, 18);
             this.lblKpi1Title.TabIndex = 1;
             this.lblKpi1Title.Text = "Tổng khách hôm nay";
             // 
@@ -194,9 +213,9 @@ namespace QuanLyKhuVuiChoi.Forms.Dashboard
             this.lblKpi2Trend.AutoSize = true;
             this.lblKpi2Trend.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lblKpi2Trend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(185)))), ((int)(((byte)(129)))));
-            this.lblKpi2Trend.Location = new System.Drawing.Point(14, 70);
+            this.lblKpi2Trend.Location = new System.Drawing.Point(14, 69);
             this.lblKpi2Trend.Name = "lblKpi2Trend";
-            this.lblKpi2Trend.Size = new System.Drawing.Size(141, 19);
+            this.lblKpi2Trend.Size = new System.Drawing.Size(141, 18);
             this.lblKpi2Trend.TabIndex = 3;
             this.lblKpi2Trend.Text = "+8% so với hôm qua";
             // 
@@ -205,9 +224,9 @@ namespace QuanLyKhuVuiChoi.Forms.Dashboard
             this.lblTicketsSold.AutoSize = true;
             this.lblTicketsSold.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
             this.lblTicketsSold.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(23)))), ((int)(((byte)(42)))));
-            this.lblTicketsSold.Location = new System.Drawing.Point(10, 28);
+            this.lblTicketsSold.Location = new System.Drawing.Point(10, 27);
             this.lblTicketsSold.Name = "lblTicketsSold";
-            this.lblTicketsSold.Size = new System.Drawing.Size(35, 41);
+            this.lblTicketsSold.Size = new System.Drawing.Size(35, 38);
             this.lblTicketsSold.TabIndex = 2;
             this.lblTicketsSold.Text = "0";
             // 
@@ -216,9 +235,9 @@ namespace QuanLyKhuVuiChoi.Forms.Dashboard
             this.lblKpi2Title.AutoSize = true;
             this.lblKpi2Title.Font = new System.Drawing.Font("Segoe UI", 8.5F);
             this.lblKpi2Title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lblKpi2Title.Location = new System.Drawing.Point(14, 10);
+            this.lblKpi2Title.Location = new System.Drawing.Point(14, 8);
             this.lblKpi2Title.Name = "lblKpi2Title";
-            this.lblKpi2Title.Size = new System.Drawing.Size(79, 20);
+            this.lblKpi2Title.Size = new System.Drawing.Size(79, 18);
             this.lblKpi2Title.TabIndex = 1;
             this.lblKpi2Title.Text = "Vé đã bán";
             // 
@@ -249,9 +268,9 @@ namespace QuanLyKhuVuiChoi.Forms.Dashboard
             this.lblKpi3Trend.AutoSize = true;
             this.lblKpi3Trend.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lblKpi3Trend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(185)))), ((int)(((byte)(129)))));
-            this.lblKpi3Trend.Location = new System.Drawing.Point(14, 70);
+            this.lblKpi3Trend.Location = new System.Drawing.Point(14, 69);
             this.lblKpi3Trend.Name = "lblKpi3Trend";
-            this.lblKpi3Trend.Size = new System.Drawing.Size(149, 19);
+            this.lblKpi3Trend.Size = new System.Drawing.Size(149, 18);
             this.lblKpi3Trend.TabIndex = 3;
             this.lblKpi3Trend.Text = "+18% so với hôm qua";
             // 
@@ -260,9 +279,9 @@ namespace QuanLyKhuVuiChoi.Forms.Dashboard
             this.lblRevenue.AutoSize = true;
             this.lblRevenue.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
             this.lblRevenue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(158)))), ((int)(((byte)(11)))));
-            this.lblRevenue.Location = new System.Drawing.Point(10, 28);
+            this.lblRevenue.Location = new System.Drawing.Point(10, 27);
             this.lblRevenue.Name = "lblRevenue";
-            this.lblRevenue.Size = new System.Drawing.Size(70, 41);
+            this.lblRevenue.Size = new System.Drawing.Size(70, 38);
             this.lblRevenue.TabIndex = 2;
             this.lblRevenue.Text = "0 đ";
             // 
@@ -271,9 +290,9 @@ namespace QuanLyKhuVuiChoi.Forms.Dashboard
             this.lblKpi3Title.AutoSize = true;
             this.lblKpi3Title.Font = new System.Drawing.Font("Segoe UI", 8.5F);
             this.lblKpi3Title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lblKpi3Title.Location = new System.Drawing.Point(14, 10);
+            this.lblKpi3Title.Location = new System.Drawing.Point(14, 8);
             this.lblKpi3Title.Name = "lblKpi3Title";
-            this.lblKpi3Title.Size = new System.Drawing.Size(78, 20);
+            this.lblKpi3Title.Size = new System.Drawing.Size(78, 18);
             this.lblKpi3Title.TabIndex = 1;
             this.lblKpi3Title.Text = "Doanh thu";
             // 
@@ -303,9 +322,9 @@ namespace QuanLyKhuVuiChoi.Forms.Dashboard
             this.lblKpi4Trend.AutoSize = true;
             this.lblKpi4Trend.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lblKpi4Trend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(185)))), ((int)(((byte)(129)))));
-            this.lblKpi4Trend.Location = new System.Drawing.Point(14, 70);
+            this.lblKpi4Trend.Location = new System.Drawing.Point(14, 69);
             this.lblKpi4Trend.Name = "lblKpi4Trend";
-            this.lblKpi4Trend.Size = new System.Drawing.Size(141, 19);
+            this.lblKpi4Trend.Size = new System.Drawing.Size(141, 18);
             this.lblKpi4Trend.TabIndex = 3;
             this.lblKpi4Trend.Text = "+5% so với hôm qua";
             // 
@@ -314,9 +333,9 @@ namespace QuanLyKhuVuiChoi.Forms.Dashboard
             this.lblCapacity.AutoSize = true;
             this.lblCapacity.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
             this.lblCapacity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(185)))), ((int)(((byte)(129)))));
-            this.lblCapacity.Location = new System.Drawing.Point(10, 28);
+            this.lblCapacity.Location = new System.Drawing.Point(10, 27);
             this.lblCapacity.Name = "lblCapacity";
-            this.lblCapacity.Size = new System.Drawing.Size(78, 41);
+            this.lblCapacity.Size = new System.Drawing.Size(78, 38);
             this.lblCapacity.TabIndex = 2;
             this.lblCapacity.Text = "72%";
             // 
@@ -325,9 +344,9 @@ namespace QuanLyKhuVuiChoi.Forms.Dashboard
             this.lblKpi4Title.AutoSize = true;
             this.lblKpi4Title.Font = new System.Drawing.Font("Segoe UI", 8.5F);
             this.lblKpi4Title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lblKpi4Title.Location = new System.Drawing.Point(14, 10);
+            this.lblKpi4Title.Location = new System.Drawing.Point(14, 8);
             this.lblKpi4Title.Name = "lblKpi4Title";
-            this.lblKpi4Title.Size = new System.Drawing.Size(155, 20);
+            this.lblKpi4Title.Size = new System.Drawing.Size(155, 18);
             this.lblKpi4Title.TabIndex = 1;
             this.lblKpi4Title.Text = "Công suất khu vui chơi";
             // 
@@ -507,5 +526,6 @@ namespace QuanLyKhuVuiChoi.Forms.Dashboard
         private System.Windows.Forms.Panel pnlAttractions;
         private System.Windows.Forms.GroupBox grpTransactions;
         private System.Windows.Forms.DataGridView dgvRecentTransactions;
+        private System.Windows.Forms.Button btnExportSummary;
     }
 }

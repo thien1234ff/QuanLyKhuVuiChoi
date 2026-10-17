@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -270,7 +270,6 @@ namespace QuanLyKhuVuiChoi.Services
             dt.Columns.Add("Mã Trò Chơi");
             dt.Columns.Add("Tên Trò Chơi");
             dt.Columns.Add("Loại Trò Chơi");
-            dt.Columns.Add("Giá Vé", typeof(decimal));
             dt.Columns.Add("Độ Tuổi Tối Thiểu", typeof(int));
             dt.Columns.Add("Sức Chứa", typeof(int));
             dt.Columns.Add("Trạng Thái");
@@ -278,7 +277,7 @@ namespace QuanLyKhuVuiChoi.Services
 
             foreach (var g in games)
             {
-                dt.Rows.Add(g.MaTroChoi, g.TenTroChoi, g.LoaiTroChoi, g.GiaVe, g.DoTuoiToiThieu, g.SucChua, g.TrangThai, g.MoTa ?? "");
+                dt.Rows.Add(g.MaTroChoi, g.TenTroChoi, g.LoaiTroChoi, g.DoTuoiToiThieu, g.SucChua, g.TrangThai, g.MoTa ?? "");
             }
 
             _excelService.ExportDataTableToExcel(dt, "TroChoi", filePath, "DANH SÁCH TRÒ CHƠI KHU VUI CHƠI");

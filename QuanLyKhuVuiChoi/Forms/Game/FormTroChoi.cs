@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -60,7 +60,6 @@ namespace QuanLyKhuVuiChoi.Forms.Game
                 t.MaTroChoi,
                 t.TenTroChoi,
                 t.LoaiTroChoi,
-                GiaVe = t.GiaVe.ToString("#,##0 đ"),
                 DoTuoiToiThieu = $"{t.DoTuoiToiThieu} tuổi",
                 SucChua = $"{t.SucChua} người",
                 t.TrangThai,
@@ -70,7 +69,6 @@ namespace QuanLyKhuVuiChoi.Forms.Game
             if (dgvTroChoi.Columns["MaTroChoi"] != null) dgvTroChoi.Columns["MaTroChoi"].HeaderText = "MÃ TRÒ CHƠI";
             if (dgvTroChoi.Columns["TenTroChoi"] != null) dgvTroChoi.Columns["TenTroChoi"].HeaderText = "TÊN TRÒ CHƠI";
             if (dgvTroChoi.Columns["LoaiTroChoi"] != null) dgvTroChoi.Columns["LoaiTroChoi"].HeaderText = "LOẠI TRÒ CHƠI";
-            if (dgvTroChoi.Columns["GiaVe"] != null) dgvTroChoi.Columns["GiaVe"].HeaderText = "GIÁ VÉ";
             if (dgvTroChoi.Columns["DoTuoiToiThieu"] != null) dgvTroChoi.Columns["DoTuoiToiThieu"].HeaderText = "TUỔI TỐI THIỂU";
             if (dgvTroChoi.Columns["SucChua"] != null) dgvTroChoi.Columns["SucChua"].HeaderText = "SỨC CHỨA";
             if (dgvTroChoi.Columns["TrangThai"] != null) dgvTroChoi.Columns["TrangThai"].HeaderText = "TRẠNG THÁI";
@@ -111,7 +109,6 @@ namespace QuanLyKhuVuiChoi.Forms.Game
             txtMaTroChoi.Text = _gameService.GenerateNextId();
             txtTenTroChoi.Clear();
             cboLoaiTroChoi.SelectedIndex = 0;
-            numGiaVe.Value = 50000;
             numDoTuoi.Value = 6;
             numSucChua.Value = 20;
             cboTrangThai.SelectedIndex = 0;
@@ -134,7 +131,7 @@ namespace QuanLyKhuVuiChoi.Forms.Game
                 MaTroChoi = txtMaTroChoi.Text.Trim(),
                 TenTroChoi = txtTenTroChoi.Text.Trim(),
                 LoaiTroChoi = cboLoaiTroChoi.SelectedItem?.ToString() ?? "Cảm giác mạnh",
-                GiaVe = numGiaVe.Value,
+                GiaVe = 0,
                 DoTuoiToiThieu = (int)numDoTuoi.Value,
                 SucChua = (int)numSucChua.Value,
                 TrangThai = cboTrangThai.SelectedItem?.ToString() ?? "Đang hoạt động",
@@ -170,7 +167,7 @@ namespace QuanLyKhuVuiChoi.Forms.Game
                 MaTroChoi = txtMaTroChoi.Text.Trim(),
                 TenTroChoi = txtTenTroChoi.Text.Trim(),
                 LoaiTroChoi = cboLoaiTroChoi.SelectedItem?.ToString() ?? "Cảm giác mạnh",
-                GiaVe = numGiaVe.Value,
+                GiaVe = 0,
                 DoTuoiToiThieu = (int)numDoTuoi.Value,
                 SucChua = (int)numSucChua.Value,
                 TrangThai = cboTrangThai.SelectedItem?.ToString() ?? "Đang hoạt động",
@@ -230,7 +227,6 @@ namespace QuanLyKhuVuiChoi.Forms.Game
                     txtMaTroChoi.Text = tc.MaTroChoi;
                     txtTenTroChoi.Text = tc.TenTroChoi;
                     if (cboLoaiTroChoi.Items.Contains(tc.LoaiTroChoi)) cboLoaiTroChoi.SelectedItem = tc.LoaiTroChoi;
-                    numGiaVe.Value = tc.GiaVe;
                     numDoTuoi.Value = tc.DoTuoiToiThieu;
                     numSucChua.Value = tc.SucChua;
                     if (cboTrangThai.Items.Contains(tc.TrangThai)) cboTrangThai.SelectedItem = tc.TrangThai;

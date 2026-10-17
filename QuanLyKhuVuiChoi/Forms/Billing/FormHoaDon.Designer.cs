@@ -1,4 +1,4 @@
-﻿namespace QuanLyKhuVuiChoi.Forms.Billing
+namespace QuanLyKhuVuiChoi.Forms.Billing
 {
     partial class FormHoaDon
     {
@@ -80,7 +80,7 @@
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(655, 30);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = " QUẢN LÝ DANH SÁCH HÓA ĐƠN VÀ LỊCH SỬ GIAO DỊCH";
+            this.lblTitle.Text = "QUẢN LÝ DANH SÁCH HÓA ĐƠN VÀ LỊCH SỬ GIAO DỊCH";
             // 
             // pnlFilter
             // 
@@ -119,7 +119,7 @@
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(115, 30);
             this.btnExport.TabIndex = 13;
-            this.btnExport.Text = " Xuất Excel";
+            this.btnExport.Text = "Xuất Excel";
             this.btnExport.UseVisualStyleBackColor = false;
             this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
             // 
@@ -135,7 +135,7 @@
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(100, 30);
             this.btnXoa.TabIndex = 12;
-            this.btnXoa.Text = " Xóa HĐ";
+            this.btnXoa.Text = "Xóa HĐ";
             this.btnXoa.UseVisualStyleBackColor = false;
             this.btnXoa.Click += new System.EventHandler(this.BtnXoa_Click);
             // 
@@ -151,7 +151,7 @@
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(120, 30);
             this.btnHuy.TabIndex = 11;
-            this.btnHuy.Text = " Hủy Hóa Đơn";
+            this.btnHuy.Text = "Hủy Hóa Đơn";
             this.btnHuy.UseVisualStyleBackColor = false;
             this.btnHuy.Click += new System.EventHandler(this.BtnHuy_Click);
             // 
@@ -167,7 +167,7 @@
             this.btnXemChiTiet.Name = "btnXemChiTiet";
             this.btnXemChiTiet.Size = new System.Drawing.Size(120, 30);
             this.btnXemChiTiet.TabIndex = 10;
-            this.btnXemChiTiet.Text = " Xem Chi Tiết";
+            this.btnXemChiTiet.Text = "Xem Chi Tiết";
             this.btnXemChiTiet.UseVisualStyleBackColor = false;
             this.btnXemChiTiet.Click += new System.EventHandler(this.BtnXemChiTiet_Click);
             // 
@@ -179,7 +179,7 @@
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReset.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnReset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
-            this.btnReset.Location = new System.Drawing.Point(165, 48);
+            this.btnReset.Location = new System.Drawing.Point(170, 48);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 30);
             this.btnReset.TabIndex = 9;
@@ -195,11 +195,11 @@
             this.btnLoc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLoc.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnLoc.ForeColor = System.Drawing.Color.White;
-            this.btnLoc.Location = new System.Drawing.Point(80, 48);
+            this.btnLoc.Location = new System.Drawing.Point(85, 48);
             this.btnLoc.Name = "btnLoc";
             this.btnLoc.Size = new System.Drawing.Size(75, 30);
             this.btnLoc.TabIndex = 8;
-            this.btnLoc.Text = " Lọc";
+            this.btnLoc.Text = "Lọc";
             this.btnLoc.UseVisualStyleBackColor = false;
             this.btnLoc.Click += new System.EventHandler(this.BtnLoc_Click);
             // 
@@ -208,16 +208,16 @@
             this.cboKhachHang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboKhachHang.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.cboKhachHang.FormattingEnabled = true;
-            this.cboKhachHang.Location = new System.Drawing.Point(770, 12);
+            this.cboKhachHang.Location = new System.Drawing.Point(800, 12);
             this.cboKhachHang.Name = "cboKhachHang";
-            this.cboKhachHang.Size = new System.Drawing.Size(200, 28);
+            this.cboKhachHang.Size = new System.Drawing.Size(180, 28);
             this.cboKhachHang.TabIndex = 7;
             // 
             // lblKh
             // 
             this.lblKh.AutoSize = true;
             this.lblKh.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lblKh.Location = new System.Drawing.Point(675, 15);
+            this.lblKh.Location = new System.Drawing.Point(700, 15);
             this.lblKh.Name = "lblKh";
             this.lblKh.Size = new System.Drawing.Size(95, 20);
             this.lblKh.TabIndex = 6;
@@ -226,17 +226,17 @@
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtSearch.Location = new System.Drawing.Point(490, 12);
+            this.txtSearch.Location = new System.Drawing.Point(525, 12);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PlaceholderText = "Mã HĐ, tên, SĐT...";
-            this.txtSearch.Size = new System.Drawing.Size(170, 27);
+            this.txtSearch.Size = new System.Drawing.Size(160, 27);
             this.txtSearch.TabIndex = 5;
             // 
             // lblSearch
             // 
             this.lblSearch.AutoSize = true;
             this.lblSearch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lblSearch.Location = new System.Drawing.Point(415, 15);
+            this.lblSearch.Location = new System.Drawing.Point(445, 15);
             this.lblSearch.Name = "lblSearch";
             this.lblSearch.Size = new System.Drawing.Size(76, 20);
             this.lblSearch.TabIndex = 4;
@@ -247,7 +247,7 @@
             this.dtpTo.CustomFormat = "dd/MM/yyyy";
             this.dtpTo.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpTo.Location = new System.Drawing.Point(285, 12);
+            this.dtpTo.Location = new System.Drawing.Point(305, 12);
             this.dtpTo.Name = "dtpTo";
             this.dtpTo.Size = new System.Drawing.Size(120, 27);
             this.dtpTo.TabIndex = 3;
@@ -256,7 +256,7 @@
             // 
             this.lblTo.AutoSize = true;
             this.lblTo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.lblTo.Location = new System.Drawing.Point(210, 15);
+            this.lblTo.Location = new System.Drawing.Point(220, 15);
             this.lblTo.Name = "lblTo";
             this.lblTo.Size = new System.Drawing.Size(78, 20);
             this.lblTo.TabIndex = 2;
@@ -267,7 +267,7 @@
             this.dtpFrom.CustomFormat = "dd/MM/yyyy";
             this.dtpFrom.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFrom.Location = new System.Drawing.Point(80, 12);
+            this.dtpFrom.Location = new System.Drawing.Point(85, 12);
             this.dtpFrom.Name = "dtpFrom";
             this.dtpFrom.Size = new System.Drawing.Size(120, 27);
             this.dtpFrom.TabIndex = 1;

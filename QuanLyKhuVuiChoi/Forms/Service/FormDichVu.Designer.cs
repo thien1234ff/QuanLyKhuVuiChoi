@@ -1,4 +1,4 @@
-﻿namespace QuanLyKhuVuiChoi.Forms.Service
+namespace QuanLyKhuVuiChoi.Forms.Service
 {
     partial class FormDichVu
     {
@@ -94,7 +94,7 @@
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(529, 32);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = " QUẢN LÝ DANH MỤC DỊCH VỤ & TIỆN ÍCH";
+            this.lblTitle.Text = "QUẢN LÝ DANH MỤC DỊCH VỤ & TIỆN ÍCH";
             // 
             // pnlInput
             // 
@@ -142,7 +142,7 @@
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.Size = new System.Drawing.Size(330, 32);
             this.btnLamMoi.TabIndex = 19;
-            this.btnLamMoi.Text = " Làm Mới Dữ Liệu";
+            this.btnLamMoi.Text = "Làm Mới Dữ Liệu";
             this.btnLamMoi.UseVisualStyleBackColor = false;
             this.btnLamMoi.Click += new System.EventHandler(this.BtnLamMoi_Click);
             // 
@@ -158,7 +158,7 @@
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(100, 34);
             this.btnXoa.TabIndex = 18;
-            this.btnXoa.Text = " Xóa";
+            this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = false;
             this.btnXoa.Click += new System.EventHandler(this.BtnXoa_Click);
             // 
@@ -174,7 +174,7 @@
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(100, 34);
             this.btnSua.TabIndex = 17;
-            this.btnSua.Text = " Sửa";
+            this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = false;
             this.btnSua.Click += new System.EventHandler(this.BtnSua_Click);
             // 
@@ -190,7 +190,7 @@
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(100, 34);
             this.btnThem.TabIndex = 16;
-            this.btnThem.Text = " Thêm";
+            this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = false;
             this.btnThem.Click += new System.EventHandler(this.BtnThem_Click);
             // 
@@ -484,9 +484,9 @@
             "Khu nghỉ ngơi",
             "Ăn vặt",
             "Dịch vụ khác"});
-            this.cboFilterLoai.Location = new System.Drawing.Point(300, 11);
+            this.cboFilterLoai.Location = new System.Drawing.Point(308, 11);
             this.cboFilterLoai.Name = "cboFilterLoai";
-            this.cboFilterLoai.Size = new System.Drawing.Size(130, 28);
+            this.cboFilterLoai.Size = new System.Drawing.Size(122, 28);
             this.cboFilterLoai.TabIndex = 3;
             this.cboFilterLoai.SelectedIndexChanged += new System.EventHandler(this.Filter_Changed);
             // 

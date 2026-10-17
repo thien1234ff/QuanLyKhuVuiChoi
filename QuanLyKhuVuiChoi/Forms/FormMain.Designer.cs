@@ -319,10 +319,10 @@ namespace QuanLyKhuVuiChoi.Forms
             this.lblUserGreeting.AutoSize = true;
             this.lblUserGreeting.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
             this.lblUserGreeting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(211)))), ((int)(((byte)(153)))));
-            this.lblUserGreeting.Location = new System.Drawing.Point(219, 23);
+            this.lblUserGreeting.Location = new System.Drawing.Point(185, 23);
             this.lblUserGreeting.Margin = new System.Windows.Forms.Padding(0, 7, 14, 0);
             this.lblUserGreeting.Name = "lblUserGreeting";
-            this.lblUserGreeting.Size = new System.Drawing.Size(175, 21);
+            this.lblUserGreeting.Size = new System.Drawing.Size(145, 21);
             this.lblUserGreeting.TabIndex = 3;
             this.lblUserGreeting.Text = "Chào: Quản trị viên";
             // 
@@ -331,7 +331,7 @@ namespace QuanLyKhuVuiChoi.Forms
             this.lblClock.AutoSize = true;
             this.lblClock.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblClock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
-            this.lblClock.Location = new System.Drawing.Point(20, 24);
+            this.lblClock.Location = new System.Drawing.Point(10, 24);
             this.lblClock.Margin = new System.Windows.Forms.Padding(0, 8, 14, 0);
             this.lblClock.Name = "lblClock";
             this.lblClock.Size = new System.Drawing.Size(165, 20);

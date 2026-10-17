@@ -1,4 +1,4 @@
-﻿namespace QuanLyKhuVuiChoi.Forms.Game
+namespace QuanLyKhuVuiChoi.Forms.Game
 {
     partial class FormTroChoi
     {
@@ -33,8 +33,6 @@
             this.lblSucChua = new System.Windows.Forms.Label();
             this.numDoTuoi = new System.Windows.Forms.NumericUpDown();
             this.lblDoTuoi = new System.Windows.Forms.Label();
-            this.numGiaVe = new System.Windows.Forms.NumericUpDown();
-            this.lblGiaVe = new System.Windows.Forms.Label();
             this.cboLoaiTroChoi = new System.Windows.Forms.ComboBox();
             this.lblLoaiTroChoi = new System.Windows.Forms.Label();
             this.txtTenTroChoi = new System.Windows.Forms.TextBox();
@@ -56,7 +54,6 @@
             this.pnlInput.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSucChua)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDoTuoi)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numGiaVe)).BeginInit();
             this.pnlRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTroChoi)).BeginInit();
             this.pnlFilter.SuspendLayout();
@@ -96,7 +93,7 @@
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(434, 32);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = " QUẢN LÝ DANH MỤC TRÒ CHƠI";
+            this.lblTitle.Text = "QUẢN LÝ DANH MỤC TRÒ CHƠI";
             // 
             // pnlInput
             // 
@@ -113,8 +110,6 @@
             this.pnlInput.Controls.Add(this.lblSucChua);
             this.pnlInput.Controls.Add(this.numDoTuoi);
             this.pnlInput.Controls.Add(this.lblDoTuoi);
-            this.pnlInput.Controls.Add(this.numGiaVe);
-            this.pnlInput.Controls.Add(this.lblGiaVe);
             this.pnlInput.Controls.Add(this.cboLoaiTroChoi);
             this.pnlInput.Controls.Add(this.lblLoaiTroChoi);
             this.pnlInput.Controls.Add(this.txtTenTroChoi);
@@ -141,11 +136,11 @@
             this.btnLamMoi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLamMoi.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnLamMoi.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
-            this.btnLamMoi.Location = new System.Drawing.Point(15, 475);
+            this.btnLamMoi.Location = new System.Drawing.Point(15, 435);
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.Size = new System.Drawing.Size(330, 32);
             this.btnLamMoi.TabIndex = 20;
-            this.btnLamMoi.Text = " Làm Mới Dữ Liệu";
+            this.btnLamMoi.Text = "Làm Mới Dữ Liệu";
             this.btnLamMoi.UseVisualStyleBackColor = false;
             this.btnLamMoi.Click += new System.EventHandler(this.BtnLamMoi_Click);
             // 
@@ -157,11 +152,11 @@
             this.btnXoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnXoa.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnXoa.ForeColor = System.Drawing.Color.White;
-            this.btnXoa.Location = new System.Drawing.Point(245, 430);
+            this.btnXoa.Location = new System.Drawing.Point(245, 390);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(100, 34);
             this.btnXoa.TabIndex = 19;
-            this.btnXoa.Text = " Xóa";
+            this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = false;
             this.btnXoa.Click += new System.EventHandler(this.BtnXoa_Click);
             // 
@@ -173,11 +168,11 @@
             this.btnSua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSua.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnSua.ForeColor = System.Drawing.Color.White;
-            this.btnSua.Location = new System.Drawing.Point(130, 430);
+            this.btnSua.Location = new System.Drawing.Point(130, 390);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(100, 34);
             this.btnSua.TabIndex = 18;
-            this.btnSua.Text = " Sửa";
+            this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = false;
             this.btnSua.Click += new System.EventHandler(this.BtnSua_Click);
             // 
@@ -189,27 +184,27 @@
             this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnThem.ForeColor = System.Drawing.Color.White;
-            this.btnThem.Location = new System.Drawing.Point(15, 430);
+            this.btnThem.Location = new System.Drawing.Point(15, 390);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(100, 34);
             this.btnThem.TabIndex = 17;
-            this.btnThem.Text = " Thêm";
+            this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = false;
             this.btnThem.Click += new System.EventHandler(this.BtnThem_Click);
             // 
             // txtMoTa
             // 
             this.txtMoTa.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtMoTa.Location = new System.Drawing.Point(135, 345);
+            this.txtMoTa.Location = new System.Drawing.Point(135, 305);
             this.txtMoTa.Multiline = true;
             this.txtMoTa.Name = "txtMoTa";
-            this.txtMoTa.Size = new System.Drawing.Size(210, 55);
+            this.txtMoTa.Size = new System.Drawing.Size(210, 65);
             this.txtMoTa.TabIndex = 16;
             // 
             // lblMoTa
             // 
             this.lblMoTa.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblMoTa.Location = new System.Drawing.Point(15, 348);
+            this.lblMoTa.Location = new System.Drawing.Point(15, 308);
             this.lblMoTa.Name = "lblMoTa";
             this.lblMoTa.Size = new System.Drawing.Size(110, 20);
             this.lblMoTa.TabIndex = 15;
@@ -224,7 +219,7 @@
             "Đang hoạt động",
             "Bảo trì",
             "Tạm ngưng"});
-            this.cboTrangThai.Location = new System.Drawing.Point(135, 305);
+            this.cboTrangThai.Location = new System.Drawing.Point(135, 265);
             this.cboTrangThai.Name = "cboTrangThai";
             this.cboTrangThai.Size = new System.Drawing.Size(210, 28);
             this.cboTrangThai.TabIndex = 14;
@@ -232,7 +227,7 @@
             // lblTrangThai
             // 
             this.lblTrangThai.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblTrangThai.Location = new System.Drawing.Point(15, 308);
+            this.lblTrangThai.Location = new System.Drawing.Point(15, 268);
             this.lblTrangThai.Name = "lblTrangThai";
             this.lblTrangThai.Size = new System.Drawing.Size(110, 20);
             this.lblTrangThai.TabIndex = 13;
@@ -241,7 +236,7 @@
             // numSucChua
             // 
             this.numSucChua.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.numSucChua.Location = new System.Drawing.Point(135, 265);
+            this.numSucChua.Location = new System.Drawing.Point(135, 225);
             this.numSucChua.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -264,7 +259,7 @@
             // lblSucChua
             // 
             this.lblSucChua.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblSucChua.Location = new System.Drawing.Point(15, 268);
+            this.lblSucChua.Location = new System.Drawing.Point(15, 228);
             this.lblSucChua.Name = "lblSucChua";
             this.lblSucChua.Size = new System.Drawing.Size(110, 20);
             this.lblSucChua.TabIndex = 11;
@@ -273,7 +268,7 @@
             // numDoTuoi
             // 
             this.numDoTuoi.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.numDoTuoi.Location = new System.Drawing.Point(135, 225);
+            this.numDoTuoi.Location = new System.Drawing.Point(135, 185);
             this.numDoTuoi.Maximum = new decimal(new int[] {
             100,
             0,
@@ -286,39 +281,11 @@
             // lblDoTuoi
             // 
             this.lblDoTuoi.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblDoTuoi.Location = new System.Drawing.Point(15, 228);
+            this.lblDoTuoi.Location = new System.Drawing.Point(15, 188);
             this.lblDoTuoi.Name = "lblDoTuoi";
             this.lblDoTuoi.Size = new System.Drawing.Size(110, 20);
             this.lblDoTuoi.TabIndex = 9;
             this.lblDoTuoi.Text = "Tuổi tối thiểu:";
-            // 
-            // numGiaVe
-            // 
-            this.numGiaVe.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.numGiaVe.Increment = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.numGiaVe.Location = new System.Drawing.Point(135, 185);
-            this.numGiaVe.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-            this.numGiaVe.Name = "numGiaVe";
-            this.numGiaVe.Size = new System.Drawing.Size(210, 27);
-            this.numGiaVe.TabIndex = 8;
-            this.numGiaVe.ThousandsSeparator = true;
-            // 
-            // lblGiaVe
-            // 
-            this.lblGiaVe.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblGiaVe.Location = new System.Drawing.Point(15, 188);
-            this.lblGiaVe.Name = "lblGiaVe";
-            this.lblGiaVe.Size = new System.Drawing.Size(110, 20);
-            this.lblGiaVe.TabIndex = 7;
-            this.lblGiaVe.Text = "Giá vé (VNĐ):";
             // 
             // cboLoaiTroChoi
             // 
@@ -502,9 +469,9 @@
             "Công nghệ",
             "Thể thao",
             "Hành động"});
-            this.cboFilterLoai.Location = new System.Drawing.Point(300, 11);
+            this.cboFilterLoai.Location = new System.Drawing.Point(308, 11);
             this.cboFilterLoai.Name = "cboFilterLoai";
-            this.cboFilterLoai.Size = new System.Drawing.Size(130, 28);
+            this.cboFilterLoai.Size = new System.Drawing.Size(122, 28);
             this.cboFilterLoai.TabIndex = 3;
             this.cboFilterLoai.SelectedIndexChanged += new System.EventHandler(this.Filter_Changed);
             // 
@@ -556,7 +523,6 @@
             this.pnlInput.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSucChua)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDoTuoi)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numGiaVe)).EndInit();
             this.pnlRight.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTroChoi)).EndInit();
             this.pnlFilter.ResumeLayout(false);
@@ -578,8 +544,6 @@
         private System.Windows.Forms.TextBox txtTenTroChoi;
         private System.Windows.Forms.Label lblLoaiTroChoi;
         private System.Windows.Forms.ComboBox cboLoaiTroChoi;
-        private System.Windows.Forms.Label lblGiaVe;
-        private System.Windows.Forms.NumericUpDown numGiaVe;
         private System.Windows.Forms.Label lblDoTuoi;
         private System.Windows.Forms.NumericUpDown numDoTuoi;
         private System.Windows.Forms.Label lblSucChua;

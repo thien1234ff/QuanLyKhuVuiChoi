@@ -25,9 +25,12 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.pnlTicketCards = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlFilterBar = new System.Windows.Forms.Panel();
-            this.btnCatService = new System.Windows.Forms.Button();
-            this.btnCatTicket = new System.Windows.Forms.Button();
+            this.flpCategories = new System.Windows.Forms.FlowLayoutPanel();
             this.btnCatAll = new System.Windows.Forms.Button();
+            this.btnCatTicket = new System.Windows.Forms.Button();
+            this.btnCatService = new System.Windows.Forms.Button();
+            this.pnlSearch = new System.Windows.Forms.Panel();
+            this.txtSearchItem = new System.Windows.Forms.TextBox();
             this.pnlCart = new System.Windows.Forms.Panel();
             this.pnlCartItems = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlCustomerRow = new System.Windows.Forms.Panel();
@@ -50,6 +53,8 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.pnlBody.SuspendLayout();
             this.pnlLeft.SuspendLayout();
             this.pnlFilterBar.SuspendLayout();
+            this.flpCategories.SuspendLayout();
+            this.pnlSearch.SuspendLayout();
             this.pnlCart.SuspendLayout();
             this.pnlCustomerRow.SuspendLayout();
             this.pnlCartBottom.SuspendLayout();
@@ -74,9 +79,9 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             // lblSub
             // 
             this.lblSub.AutoSize = true;
-            this.lblSub.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblSub.Font = new System.Drawing.Font("Segoe UI", 8.5F);
             this.lblSub.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lblSub.Location = new System.Drawing.Point(24, 55);
+            this.lblSub.Location = new System.Drawing.Point(24, 58);
             this.lblSub.Name = "lblSub";
             this.lblSub.Size = new System.Drawing.Size(325, 20);
             this.lblSub.TabIndex = 2;
@@ -87,11 +92,11 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(23)))), ((int)(((byte)(42)))));
-            this.lblTitle.Location = new System.Drawing.Point(22, 22);
+            this.lblTitle.Location = new System.Drawing.Point(22, 26);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(437, 35);
+            this.lblTitle.Size = new System.Drawing.Size(437, 30);
             this.lblTitle.TabIndex = 1;
-            this.lblTitle.Text = " TẠO ĐƠN BÁN VÉ & DỊCH VỤ (POS)";
+            this.lblTitle.Text = "TẠO ĐƠN BÁN VÉ & DỊCH VỤ (POS)";
             // 
             // lblBreadcrumb
             // 
@@ -100,7 +105,7 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.lblBreadcrumb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.lblBreadcrumb.Location = new System.Drawing.Point(24, 5);
             this.lblBreadcrumb.Name = "lblBreadcrumb";
-            this.lblBreadcrumb.Size = new System.Drawing.Size(124, 20);
+            this.lblBreadcrumb.Size = new System.Drawing.Size(124, 18);
             this.lblBreadcrumb.TabIndex = 0;
             this.lblBreadcrumb.Text = "Quầy POS / Bán vé";
             // 
@@ -142,9 +147,8 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             // 
             this.pnlFilterBar.BackColor = System.Drawing.Color.White;
             this.pnlFilterBar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlFilterBar.Controls.Add(this.btnCatService);
-            this.pnlFilterBar.Controls.Add(this.btnCatTicket);
-            this.pnlFilterBar.Controls.Add(this.btnCatAll);
+            this.pnlFilterBar.Controls.Add(this.pnlSearch);
+            this.pnlFilterBar.Controls.Add(this.flpCategories);
             this.pnlFilterBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlFilterBar.Location = new System.Drawing.Point(0, 0);
             this.pnlFilterBar.Name = "pnlFilterBar";
@@ -152,39 +156,21 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.pnlFilterBar.Size = new System.Drawing.Size(775, 48);
             this.pnlFilterBar.TabIndex = 0;
             // 
-            // btnCatService
+            // flpCategories
             // 
-            this.btnCatService.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(249)))));
-            this.btnCatService.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCatService.FlatAppearance.BorderSize = 0;
-            this.btnCatService.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCatService.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.btnCatService.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
-            this.btnCatService.Location = new System.Drawing.Point(235, 6);
-            this.btnCatService.Name = "btnCatService";
-            this.btnCatService.Size = new System.Drawing.Size(120, 32);
-            this.btnCatService.TabIndex = 2;
-            this.btnCatService.Tag = "DichVu";
-            this.btnCatService.Text = "Dịch Vụ";
-            this.btnCatService.UseVisualStyleBackColor = false;
-            this.btnCatService.Click += new System.EventHandler(this.BtnCategory_Click);
-            // 
-            // btnCatTicket
-            // 
-            this.btnCatTicket.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(249)))));
-            this.btnCatTicket.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCatTicket.FlatAppearance.BorderSize = 0;
-            this.btnCatTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCatTicket.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.btnCatTicket.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
-            this.btnCatTicket.Location = new System.Drawing.Point(115, 6);
-            this.btnCatTicket.Name = "btnCatTicket";
-            this.btnCatTicket.Size = new System.Drawing.Size(110, 32);
-            this.btnCatTicket.TabIndex = 1;
-            this.btnCatTicket.Tag = "Ve";
-            this.btnCatTicket.Text = "Vé Vào";
-            this.btnCatTicket.UseVisualStyleBackColor = false;
-            this.btnCatTicket.Click += new System.EventHandler(this.BtnCategory_Click);
+            this.flpCategories.AutoSize = true;
+            this.flpCategories.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flpCategories.BackColor = System.Drawing.Color.Transparent;
+            this.flpCategories.Controls.Add(this.btnCatAll);
+            this.flpCategories.Controls.Add(this.btnCatTicket);
+            this.flpCategories.Controls.Add(this.btnCatService);
+            this.flpCategories.Dock = System.Windows.Forms.DockStyle.Left;
+            this.flpCategories.Location = new System.Drawing.Point(8, 6);
+            this.flpCategories.Margin = new System.Windows.Forms.Padding(0);
+            this.flpCategories.Name = "flpCategories";
+            this.flpCategories.Size = new System.Drawing.Size(282, 36);
+            this.flpCategories.TabIndex = 0;
+            this.flpCategories.WrapContents = false;
             // 
             // btnCatAll
             // 
@@ -194,14 +180,73 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.btnCatAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCatAll.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnCatAll.ForeColor = System.Drawing.Color.White;
-            this.btnCatAll.Location = new System.Drawing.Point(8, 6);
+            this.btnCatAll.Location = new System.Drawing.Point(0, 2);
+            this.btnCatAll.Margin = new System.Windows.Forms.Padding(0, 2, 6, 0);
             this.btnCatAll.Name = "btnCatAll";
-            this.btnCatAll.Size = new System.Drawing.Size(100, 32);
+            this.btnCatAll.Size = new System.Drawing.Size(85, 32);
             this.btnCatAll.TabIndex = 0;
             this.btnCatAll.Tag = "TatCa";
             this.btnCatAll.Text = "Tất cả";
             this.btnCatAll.UseVisualStyleBackColor = false;
             this.btnCatAll.Click += new System.EventHandler(this.BtnCategory_Click);
+            // 
+            // btnCatTicket
+            // 
+            this.btnCatTicket.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(249)))));
+            this.btnCatTicket.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCatTicket.FlatAppearance.BorderSize = 0;
+            this.btnCatTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCatTicket.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnCatTicket.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
+            this.btnCatTicket.Location = new System.Drawing.Point(91, 2);
+            this.btnCatTicket.Margin = new System.Windows.Forms.Padding(0, 2, 6, 0);
+            this.btnCatTicket.Name = "btnCatTicket";
+            this.btnCatTicket.Size = new System.Drawing.Size(90, 32);
+            this.btnCatTicket.TabIndex = 1;
+            this.btnCatTicket.Tag = "Ve";
+            this.btnCatTicket.Text = "Vé Vào";
+            this.btnCatTicket.UseVisualStyleBackColor = false;
+            this.btnCatTicket.Click += new System.EventHandler(this.BtnCategory_Click);
+            // 
+            // btnCatService
+            // 
+            this.btnCatService.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(249)))));
+            this.btnCatService.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCatService.FlatAppearance.BorderSize = 0;
+            this.btnCatService.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCatService.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnCatService.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
+            this.btnCatService.Location = new System.Drawing.Point(187, 2);
+            this.btnCatService.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
+            this.btnCatService.Name = "btnCatService";
+            this.btnCatService.Size = new System.Drawing.Size(95, 32);
+            this.btnCatService.TabIndex = 2;
+            this.btnCatService.Tag = "DichVu";
+            this.btnCatService.Text = "Dịch Vụ";
+            this.btnCatService.UseVisualStyleBackColor = false;
+            this.btnCatService.Click += new System.EventHandler(this.BtnCategory_Click);
+            // 
+            // pnlSearch
+            // 
+            this.pnlSearch.BackColor = System.Drawing.Color.Transparent;
+            this.pnlSearch.Controls.Add(this.txtSearchItem);
+            this.pnlSearch.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlSearch.Location = new System.Drawing.Point(535, 6);
+            this.pnlSearch.Name = "pnlSearch";
+            this.pnlSearch.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.pnlSearch.Size = new System.Drawing.Size(230, 36);
+            this.pnlSearch.TabIndex = 1;
+            // 
+            // txtSearchItem
+            // 
+            this.txtSearchItem.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtSearchItem.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.txtSearchItem.Location = new System.Drawing.Point(0, 3);
+            this.txtSearchItem.Name = "txtSearchItem";
+            this.txtSearchItem.PlaceholderText = "Tìm vé, dịch vụ theo tên...";
+            this.txtSearchItem.Size = new System.Drawing.Size(230, 29);
+            this.txtSearchItem.TabIndex = 0;
+            this.txtSearchItem.TextChanged += new System.EventHandler(this.TxtSearchItem_TextChanged);
             // 
             // pnlCart
             // 
@@ -212,10 +257,10 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.pnlCart.Controls.Add(this.pnlCartBottom);
             this.pnlCart.Controls.Add(this.pnlCartHeader);
             this.pnlCart.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlCart.Location = new System.Drawing.Point(805, 15);
+            this.pnlCart.Location = new System.Drawing.Point(825, 15);
             this.pnlCart.Name = "pnlCart";
             this.pnlCart.Padding = new System.Windows.Forms.Padding(15);
-            this.pnlCart.Size = new System.Drawing.Size(400, 665);
+            this.pnlCart.Size = new System.Drawing.Size(380, 665);
             this.pnlCart.TabIndex = 0;
             // 
             // pnlCartItems
@@ -224,9 +269,9 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.pnlCartItems.BackColor = System.Drawing.Color.White;
             this.pnlCartItems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlCartItems.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.pnlCartItems.Location = new System.Drawing.Point(15, 95);
+            this.pnlCartItems.Location = new System.Drawing.Point(15, 101);
             this.pnlCartItems.Name = "pnlCartItems";
-            this.pnlCartItems.Size = new System.Drawing.Size(368, 333);
+            this.pnlCartItems.Size = new System.Drawing.Size(368, 327);
             this.pnlCartItems.TabIndex = 2;
             this.pnlCartItems.WrapContents = false;
             // 
@@ -237,7 +282,7 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.pnlCustomerRow.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlCustomerRow.Location = new System.Drawing.Point(15, 45);
             this.pnlCustomerRow.Name = "pnlCustomerRow";
-            this.pnlCustomerRow.Size = new System.Drawing.Size(368, 50);
+            this.pnlCustomerRow.Size = new System.Drawing.Size(368, 56);
             this.pnlCustomerRow.TabIndex = 1;
             // 
             // cboCustomer
@@ -246,7 +291,7 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.cboCustomer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCustomer.Font = new System.Drawing.Font("Segoe UI", 9.5F);
             this.cboCustomer.FormattingEnabled = true;
-            this.cboCustomer.Location = new System.Drawing.Point(0, 21);
+            this.cboCustomer.Location = new System.Drawing.Point(0, 27);
             this.cboCustomer.Name = "cboCustomer";
             this.cboCustomer.Size = new System.Drawing.Size(368, 29);
             this.cboCustomer.TabIndex = 1;
@@ -292,7 +337,7 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.btnCheckout.Name = "btnCheckout";
             this.btnCheckout.Size = new System.Drawing.Size(368, 45);
             this.btnCheckout.TabIndex = 8;
-            this.btnCheckout.Text = " TIẾP TỤC THANH TOÁN  ";
+            this.btnCheckout.Text = "TIẾP TỤC THANH TOÁN";
             this.btnCheckout.UseVisualStyleBackColor = false;
             this.btnCheckout.Click += new System.EventHandler(this.BtnCheckout_Click);
             // 
@@ -415,7 +460,7 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.lblCartTitle.Name = "lblCartTitle";
             this.lblCartTitle.Size = new System.Drawing.Size(188, 25);
             this.lblCartTitle.TabIndex = 0;
-            this.lblCartTitle.Text = " Giỏ Hàng Vé/DV";
+            this.lblCartTitle.Text = "Giỏ Hàng Vé/DV";
             // 
             // FormBanVe
             // 
@@ -434,6 +479,11 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
             this.pnlBody.ResumeLayout(false);
             this.pnlLeft.ResumeLayout(false);
             this.pnlFilterBar.ResumeLayout(false);
+            this.pnlFilterBar.PerformLayout();
+            this.flpCategories.ResumeLayout(false);
+            this.flpCategories.PerformLayout();
+            this.pnlSearch.ResumeLayout(false);
+            this.pnlSearch.PerformLayout();
             this.pnlCart.ResumeLayout(false);
             this.pnlCustomerRow.ResumeLayout(false);
             this.pnlCustomerRow.PerformLayout();
@@ -473,9 +523,12 @@ namespace QuanLyKhuVuiChoi.Forms.Billing
         private System.Windows.Forms.Button btnCheckout;
         private System.Windows.Forms.Panel pnlLeft;
         private System.Windows.Forms.Panel pnlFilterBar;
+        private System.Windows.Forms.FlowLayoutPanel flpCategories;
         private System.Windows.Forms.Button btnCatAll;
         private System.Windows.Forms.Button btnCatTicket;
         private System.Windows.Forms.Button btnCatService;
+        private System.Windows.Forms.Panel pnlSearch;
+        private System.Windows.Forms.TextBox txtSearchItem;
         private System.Windows.Forms.FlowLayoutPanel pnlTicketCards;
     }
 }
